@@ -1,0 +1,14 @@
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.deps.json
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfoInputs.cache
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfo.cs
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.CoreCompileInputs.cache
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.runtimeconfig.json
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.AssemblyReference.cache
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
