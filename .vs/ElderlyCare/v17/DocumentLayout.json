@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\auth\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\admin\\users\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\admin\\users\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\admin\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\admin\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\auth\\forgotpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\forgotpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\auth\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\elderlycaremvc\\pages\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\auth\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\logout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\auth\\resetpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\resetpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\pages\\auth\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\elderlycaremvc\\pages\\auth\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\elderlycaremvc\\pages\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|c:\\users\\mot\\desktop\\prn222\\project\\hoang81102\\heathcare\\elderlycaremvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\elderlycaremvc\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}|ElderlyCareMVC\\ElderlyCareMVC.csproj|solutionrelative:elderlycaremvc\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T16:06:51.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ForgotPassword.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml.cs",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml.cs",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml.cs",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAqwB0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T16:05:41.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\ForgotPassword.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T16:05:36.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\Login.cshtml.cs",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Login.cshtml.cs",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\Login.cshtml.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAcwCUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T16:05:15.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Logout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Logout.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\Logout.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Logout.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\Logout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T16:05:07.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T16:02:51.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml.cs",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Admin\\Users\\Index.cshtml.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAnwCEAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T16:02:53.006Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ResetPassword.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml.cs",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml.cs",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml.cs",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAAADEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T16:04:42.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\ResetPassword.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T16:04:40.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\Register.cshtml.cs",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Register.cshtml.cs",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\Register.cshtml.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAAADgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T15:46:22.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Login.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Login.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\Login.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T15:42:15.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Program.cs",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Program.cs",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Program.cs",
+              "RelativeToolTip": "ElderlyCareMVC\\Program.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T15:49:21.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Register.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Auth\\Register.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Auth\\Register.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Auth\\Register.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACsAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T15:42:26.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ElderlyCareMVC\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\ElderlyCareMVC\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ElderlyCareMVC\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAAAF8AAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T11:24:41.856Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
