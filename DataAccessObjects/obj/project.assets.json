@@ -5047,19 +5047,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mot\\.nuget\\packages\\": {}
+    "C:\\Users\\IdeaPad\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\DataAccessObjects\\DataAccessObjects.csproj",
+      "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\HeathCare\\DataAccessObjects\\DataAccessObjects.csproj",
       "projectName": "DataAccessObjects",
-      "projectPath": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\DataAccessObjects\\DataAccessObjects.csproj",
-      "packagesPath": "C:\\Users\\Mot\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\DataAccessObjects\\obj\\",
+      "projectPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\DataAccessObjects\\DataAccessObjects.csproj",
+      "packagesPath": "C:\\Users\\IdeaPad\\.nuget\\packages\\",
+      "outputPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\DataAccessObjects\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Mot\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\IdeaPad\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5073,8 +5073,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\BusinessObjects\\BusinessObjects.csproj": {
-              "projectPath": "C:\\Users\\Mot\\Desktop\\PRN222\\Project\\hoang81102\\HeathCare\\BusinessObjects\\BusinessObjects.csproj"
+            "C:\\FPT\\PRN222\\New folder\\HeathCare\\BusinessObjects\\BusinessObjects.csproj": {
+              "projectPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\BusinessObjects\\BusinessObjects.csproj"
             }
           }
         }
@@ -5131,7 +5131,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
