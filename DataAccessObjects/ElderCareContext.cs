@@ -46,7 +46,7 @@ public partial class ElderCareContext : DbContext
         IConfiguration configuration = new ConfigurationBuilder()
             .AddJsonFile(appSettingsPath, true, true)
             .Build();
-        return configuration["ConnectionStrings:DefaultConnectionString"];
+        return configuration["ConnectionStrings:MyStockDB"];
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -306,4 +306,13 @@ public partial class ElderCareContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer(GetConnectionString());
+        }
+    }
+
 }

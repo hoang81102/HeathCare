@@ -1,0 +1,92 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Auth.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row" asp-page-handler="Register">
+    <div class="col-lg-8 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center mb-5">Create new Account</h2>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <div asp-validation-summary="All"></div>
+                    </div>
+                }
+
+                <form method="post">
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Userame</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="RegisterViewModel.Username">
+                            <span asp-validation-for="RegisterViewModel.Username" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Full Name</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="RegisterViewModel.Fullname">
+                            <span asp-validation-for="RegisterViewModel.Fullname" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="RegisterViewModel.Email">
+                            <span asp-validation-for="RegisterViewModel.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Phone Number</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="RegisterViewModel.Phone">
+                            <span asp-validation-for="RegisterViewModel.Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Address</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="RegisterViewModel.Address">
+                            <span asp-validation-for="RegisterViewModel.Address" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Password</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" asp-for="RegisterViewModel.Password">
+                            <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Confirm Password</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" asp-for="RegisterViewModel.ConfirmPassword">
+                            <span asp-validation-for="RegisterViewModel.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="offset-sm-4 col-sm-4 d-grid">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                        <div class="col-sm-4 d-grid">
+                            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,26 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Admin.Services.IndexModel
+@{
+}
+
+<h2>List of Services</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Service Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model.ServiceList)
+        {
+            <tr>
+                <td>@service.ServiceName</td>
+                <td>@service.Description</td>
+                <td>@service.Price.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>

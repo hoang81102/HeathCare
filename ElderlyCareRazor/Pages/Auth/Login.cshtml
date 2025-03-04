@@ -1,0 +1,70 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="card mx-auto shadow-lg mt-5" style="width: 400px; border-radius: 15px;">
+    <div class="card-body">
+        <h2 class="text-center mb-4 fw-bold">Welcome, please login</h2>
+
+        <!-- Thông báo lỗi nếu có -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger" role="alert">
+                <div asp-validation-summary="All"></div>
+            </div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Email or Username</label>
+                <input class="form-control" asp-for="Email" placeholder="Enter your email or username">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Password</label>
+                <input class="form-control" type="password" asp-for="Password" placeholder="Enter your password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col d-grid">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <div class="col d-grid">
+                    <a class="btn btn-outline-secondary" href="/" role="button">Cancel</a>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a class="btn btn-link text-decoration-none" href="/Auth/ForgotPassword">Forgot your password?</a>
+            </div>
+        </form>
+
+        <hr />
+
+        <div class="text-center my-3">
+            <p>Hoặc đăng nhập bằng</p>
+            <form method="post" asp-page-handler="GoogleLogin" class="d-inline">
+                <button type="submit" class="btn btn-danger btn-block mb-2">
+                    <i class="fab fa-google"></i> Đăng nhập với Google
+                </button>
+            </form>
+        </div>
+        <hr />
+    </div>
+</div>
