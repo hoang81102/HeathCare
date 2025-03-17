@@ -61,7 +61,6 @@ namespace DataAccessObjects
         }
 
 
-        // 🔹 Cập nhật tài khoản
         public async Task UpdateAccountAsync(Account account)
         {
             var existingAccount = await _context.Accounts
@@ -82,10 +81,16 @@ namespace DataAccessObjects
                 account.Password = EncryptPassword(account.Password);
             }
 
+            var trackedEntity = _context.Accounts.Local.FirstOrDefault(a => a.AccountId == account.AccountId);
+            if (trackedEntity != null)
+            {
+                _context.Entry(trackedEntity).State = EntityState.Detached;
+            }
+
             _context.Accounts.Update(account);
             await _context.SaveChangesAsync();
-            _context.Entry(account).State = EntityState.Detached;
         }
+
 
 
         // 🔹 Xóa tài khoản
