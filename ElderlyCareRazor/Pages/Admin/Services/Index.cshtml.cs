@@ -22,7 +22,7 @@ namespace ElderlyCareRazor.Pages.Admin.Services
         {
             var userRole = HttpContext.Session.GetString("UserRole");
 
-            if (userRole == null || userRole != "admin")
+            if (userRole == null || (userRole != "admin" && userRole != "care"))
             {
                 TempData["ErrorMessage"] = "You do not have permission to access this page.";
                 return RedirectToPage("/Auth/Login");

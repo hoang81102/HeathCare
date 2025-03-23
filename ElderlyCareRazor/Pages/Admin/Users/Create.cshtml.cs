@@ -82,8 +82,6 @@ namespace ElderlyCareRazor.Pages.Admin.Users
             };
 
             await _accountService.AddAccountAsync(newAccount);
-
-            await _accountService.AddAccountAsync(newAccount);
             return RedirectToPage("./Index");
         }
     }
