@@ -104,6 +104,19 @@
                                 </ul>
                             </li>
                             }
+                            else if (userRole.Equals("care"))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @Username
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-page="/Admin/Services/Index">Service</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" asp-page="/Auth/Logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                            }
                     </ul>
                 </div>
             </div>

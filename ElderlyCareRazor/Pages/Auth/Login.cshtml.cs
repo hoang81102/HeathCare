@@ -66,7 +66,7 @@ namespace ElderlyCareRazor.Pages.Auth
 
             HttpContext.Session.SetString("UserId", user.AccountId.ToString());
             HttpContext.Session.SetString("Username", user.Username);
-            HttpContext.Session.SetString("UserRole", user.RoleId == 1 ? "client" : "admin");
+            HttpContext.Session.SetString("UserRole", user.RoleId == 1 ? "client" : user.RoleId == 2 ? "admin" : "care");
 
             var userJson = JsonSerializer.Serialize(user);
             HttpContext.Session.SetString("User", userJson);
@@ -159,7 +159,7 @@ namespace ElderlyCareRazor.Pages.Auth
                 account = newAccount;
                 HttpContext.Session.SetString("UserId", account.AccountId.ToString());
                 HttpContext.Session.SetString("Username", account.Username);
-                HttpContext.Session.SetString("UserRole", account.RoleId == 1 ? "client" : "admin");
+                HttpContext.Session.SetString("UserRole", account.RoleId == 1 ? "client" : account.RoleId == 2 ? "admin" : "care");
 
             }
             else
