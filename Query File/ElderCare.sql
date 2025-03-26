@@ -1,4 +1,3 @@
-CREATE DATABASE ElderCare
 
 USE ElderCare
 
