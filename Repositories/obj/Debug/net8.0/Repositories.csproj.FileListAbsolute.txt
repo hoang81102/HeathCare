@@ -1,0 +1,15 @@
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\bin\Debug\net8.0\Repositories.deps.json
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\bin\Debug\net8.0\Repositories.runtimeconfig.json
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\bin\Debug\net8.0\Repositories.dll
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\bin\Debug\net8.0\Repositories.pdb
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.csproj.AssemblyReference.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfoInputs.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfo.cs
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.csproj.CoreCompileInputs.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.sourcelink.json
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.dll
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\refint\Repositories.dll
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.pdb
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\Repositories.genruntimeconfig.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Repositories\obj\Debug\net8.0\ref\Repositories.dll

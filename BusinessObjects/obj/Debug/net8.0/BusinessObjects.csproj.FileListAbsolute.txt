@@ -1,0 +1,44 @@
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.deps.json
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfoInputs.cache
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfo.cs
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.CoreCompileInputs.cache
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.runtimeconfig.json
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.AssemblyReference.cache
+C:\FPT\PRN222\New folder\ElderlyCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.deps.json
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.runtimeconfig.json
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.dll
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.AssemblyReference.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfoInputs.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfo.cs
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.CoreCompileInputs.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.sourcelink.json
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.dll
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dll
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
+C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.deps.json
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.runtimeconfig.json
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.dll
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.AssemblyReference.cache
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfoInputs.cache
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfo.cs
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.CoreCompileInputs.cache
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.sourcelink.json
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.dll
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dll
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
+C:\FPT\PRN222\New folder\HeathCare\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
