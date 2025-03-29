@@ -1,4 +1,3 @@
-CREATE DATABASE ElderCare
 
 USE ElderCare
 
@@ -34,6 +33,16 @@ CREATE TABLE Elder (
     FOREIGN KEY (accountId) REFERENCES Account(accountId)
 );
 
+CREATE TABLE Caregiver (
+    caregiverId INT PRIMARY KEY IDENTITY(1,1),
+    accountId INT NOT NULL,
+    experienceYears INT NOT NULL,
+    specialty VARCHAR(100),
+    certification VARCHAR(255),
+    availability VARCHAR(50) CHECK (availability IN ('full-time', 'part-time', 'on-call')) NOT NULL,
+    FOREIGN KEY (accountId) REFERENCES Account(accountId)
+);
+
 CREATE TABLE Service (
     serviceId INT PRIMARY KEY IDENTITY(1,1),
     serviceName VARCHAR(100) NOT NULL,
@@ -51,7 +60,7 @@ CREATE TABLE Booking (
     status VARCHAR(20) CHECK (status IN ('pending', 'completed', 'canceled')) NOT NULL,
     FOREIGN KEY (accountId) REFERENCES Account(accountId),
     FOREIGN KEY (serviceId) REFERENCES Service(serviceId),
-    FOREIGN KEY (caregiverId) REFERENCES Account(accountId),
+    FOREIGN KEY (caregiverId) REFERENCES Caregiver(caregiverId),
     FOREIGN KEY (elderId) REFERENCES Elder(elderId)
 );
 

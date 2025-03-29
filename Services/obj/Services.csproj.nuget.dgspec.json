@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\Services\\Services.csproj": {}
+    "C:\\FPT\\PRN222\\New folder\\HeathCare\\Services\\Services.csproj": {}
   },
   "projects": {
-    "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\Services\\Services.csproj": {
+    "C:\\FPT\\PRN222\\New folder\\HeathCare\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\HeathCare\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\Services\\Services.csproj",
+        "projectPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\Services\\Services.csproj",
         "packagesPath": "C:\\Users\\IdeaPad\\.nuget\\packages\\",
-        "outputPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\Services\\obj\\",
+        "outputPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\IdeaPad\\AppData\\Roaming\\NuGet\\NuGet.Config",

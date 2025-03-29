@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj": {}
+    "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj": {}
   },
   "projects": {
-    "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj": {
+    "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj",
+        "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj",
         "projectName": "ElderlyCareMVC",
-        "projectPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj",
+        "projectPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareMVC\\ElderlyCareMVC.csproj",
         "packagesPath": "C:\\Users\\IdeaPad\\.nuget\\packages\\",
-        "outputPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\ElderlyCareMVC\\obj\\",
+        "outputPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareMVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\IdeaPad\\AppData\\Roaming\\NuGet\\NuGet.Config",

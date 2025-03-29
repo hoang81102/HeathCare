@@ -5052,11 +5052,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\DataAccessObjects\\DataAccessObjects.csproj",
+      "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\HeathCare\\DataAccessObjects\\DataAccessObjects.csproj",
       "projectName": "DataAccessObjects",
-      "projectPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\DataAccessObjects\\DataAccessObjects.csproj",
+      "projectPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\DataAccessObjects\\DataAccessObjects.csproj",
       "packagesPath": "C:\\Users\\IdeaPad\\.nuget\\packages\\",
-      "outputPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\DataAccessObjects\\obj\\",
+      "outputPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\DataAccessObjects\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IdeaPad\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5073,8 +5073,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\BusinessObjects\\BusinessObjects.csproj": {
-              "projectPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\BusinessObjects\\BusinessObjects.csproj"
+            "C:\\FPT\\PRN222\\New folder\\HeathCare\\BusinessObjects\\BusinessObjects.csproj": {
+              "projectPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\BusinessObjects\\BusinessObjects.csproj"
             }
           }
         }

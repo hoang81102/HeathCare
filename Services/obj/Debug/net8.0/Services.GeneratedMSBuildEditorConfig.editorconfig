@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Services
-build_property.ProjectDir = C:\FPT\PRN222\New folder\ElderlyCare\Services\
+build_property.ProjectDir = C:\FPT\PRN222\New folder\HeathCare\Services\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

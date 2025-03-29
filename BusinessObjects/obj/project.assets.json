@@ -5032,11 +5032,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\BusinessObjects\\BusinessObjects.csproj",
+      "projectUniqueName": "C:\\FPT\\PRN222\\New folder\\HeathCare\\BusinessObjects\\BusinessObjects.csproj",
       "projectName": "BusinessObjects",
-      "projectPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\BusinessObjects\\BusinessObjects.csproj",
+      "projectPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\BusinessObjects\\BusinessObjects.csproj",
       "packagesPath": "C:\\Users\\IdeaPad\\.nuget\\packages\\",
-      "outputPath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\BusinessObjects\\obj\\",
+      "outputPath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\BusinessObjects\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IdeaPad\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -27,9 +27,9 @@ public partial class Account
 
     public int RoleId { get; set; }
 
-    public virtual ICollection<Booking> BookingAccounts { get; set; } = new List<Booking>();
+    public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
-    public virtual ICollection<Booking> BookingCaregivers { get; set; } = new List<Booking>();
+    public virtual ICollection<Caregiver> Caregivers { get; set; } = new List<Caregiver>();
 
     public virtual ICollection<Elder> Elders { get; set; } = new List<Elder>();
 

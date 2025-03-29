@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x4P/tiNZRsTjw07+5wI1MnQcZh22UpsGT/1fj41JhyRzKuKcpydZ2pt63D/ut1YNbCcdf79U1VAtTGVbWS4b7Q==",
+  "dgSpecHash": "nZ49aupzXicNLqtpVxx9hSkqjpUkA4aK1VG7TRBk1zHYgv11bnYgkC3uusL+l3TX45RcmVBFcos4U1NANBnUDA==",
   "success": true,
-  "projectFilePath": "C:\\FPT\\PRN222\\New folder\\ElderlyCare\\Services\\Services.csproj",
+  "projectFilePath": "C:\\FPT\\PRN222\\New folder\\HeathCare\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IdeaPad\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\IdeaPad\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

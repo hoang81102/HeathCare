@@ -6,7 +6,8 @@ using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.Configuration;
 using BusinessObjects;
 
-namespace BusinessObjects;
+
+namespace DataAccesObjects;
 
 public partial class ElderCareContext : DbContext
 {
@@ -22,6 +23,8 @@ public partial class ElderCareContext : DbContext
     public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<Booking> Bookings { get; set; }
+
+    public virtual DbSet<Caregiver> Caregivers { get; set; }
 
     public virtual DbSet<Elder> Elders { get; set; }
 
@@ -43,24 +46,19 @@ public partial class ElderCareContext : DbContext
         IConfiguration configuration = new ConfigurationBuilder()
             .AddJsonFile(appSettingsPath, true, true)
             .Build();
-        return configuration["ConnectionStrings:DefaultConnectionString"];
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer(GetConnectionString());
+        return configuration["ConnectionStrings:MyStockDB"];
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
         {
-            entity.HasKey(e => e.AccountId).HasName("PK__Account__F267251E8EA20C9D");
+            entity.HasKey(e => e.AccountId).HasName("PK__Account__F267251E34FBE57E");
 
             entity.ToTable("Account");
 
-            entity.HasIndex(e => e.Email, "UQ__Account__AB6E61645B9F7971").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__Account__AB6E6164AD67CA1C").IsUnique();
 
-            entity.HasIndex(e => e.Username, "UQ__Account__F3DBC572853F6CD6").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__Account__F3DBC572DC631320").IsUnique();
 
             entity.Property(e => e.AccountId).HasColumnName("accountId");
             entity.Property(e => e.AccountStatus)
@@ -104,7 +102,7 @@ public partial class ElderCareContext : DbContext
 
         modelBuilder.Entity<Booking>(entity =>
         {
-            entity.HasKey(e => e.BookingId).HasName("PK__Booking__C6D03BCDA7EC6824");
+            entity.HasKey(e => e.BookingId).HasName("PK__Booking__C6D03BCDAA18A860");
 
             entity.ToTable("Booking");
 
@@ -121,29 +119,53 @@ public partial class ElderCareContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("status");
 
-            entity.HasOne(d => d.Account).WithMany(p => p.BookingAccounts)
+            entity.HasOne(d => d.Account).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.AccountId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Booking__account__44FF419A");
+                .HasConstraintName("FK__Booking__account__47DBAE45");
 
-            entity.HasOne(d => d.Caregiver).WithMany(p => p.BookingCaregivers)
+            entity.HasOne(d => d.Caregiver).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.CaregiverId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Booking__caregiv__46E78A0C");
+                .HasConstraintName("FK__Booking__caregiv__49C3F6B7");
 
             entity.HasOne(d => d.Elder).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.ElderId)
-                .HasConstraintName("FK__Booking__elderId__47DBAE45");
+                .HasConstraintName("FK__Booking__elderId__4AB81AF0");
 
             entity.HasOne(d => d.Service).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.ServiceId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Booking__service__45F365D3");
+                .HasConstraintName("FK__Booking__service__48CFD27E");
+        });
+
+        modelBuilder.Entity<Caregiver>(entity =>
+        {
+            entity.HasKey(e => e.CaregiverId).HasName("PK__Caregive__085ECD4516C26AA5");
+
+            entity.ToTable("Caregiver");
+
+            entity.Property(e => e.CaregiverId).HasColumnName("caregiverId");
+            entity.Property(e => e.AccountId).HasColumnName("accountId");
+            entity.Property(e => e.Certification)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("certification");
+            entity.Property(e => e.ExperienceYears).HasColumnName("experienceYears");
+            entity.Property(e => e.Specialty)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("specialty");
+
+            entity.HasOne(d => d.Account).WithMany(p => p.Caregivers)
+                .HasForeignKey(d => d.AccountId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Caregiver__accou__4222D4EF");
         });
 
         modelBuilder.Entity<Elder>(entity =>
         {
-            entity.HasKey(e => e.ElderId).HasName("PK__Elder__6CB011A3F33EF0ED");
+            entity.HasKey(e => e.ElderId).HasName("PK__Elder__6CB011A3C0AA56A1");
 
             entity.ToTable("Elder");
 
@@ -176,7 +198,7 @@ public partial class ElderCareContext : DbContext
 
         modelBuilder.Entity<Feedback>(entity =>
         {
-            entity.HasKey(e => e.FeedbackId).HasName("PK__Feedback__2613FD24A3E3ADEE");
+            entity.HasKey(e => e.FeedbackId).HasName("PK__Feedback__2613FD24F4FA4051");
 
             entity.ToTable("Feedback");
 
@@ -190,12 +212,12 @@ public partial class ElderCareContext : DbContext
             entity.HasOne(d => d.Booking).WithMany(p => p.Feedbacks)
                 .HasForeignKey(d => d.BookingId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Feedback__bookin__534D60F1");
+                .HasConstraintName("FK__Feedback__bookin__5629CD9C");
         });
 
         modelBuilder.Entity<Record>(entity =>
         {
-            entity.HasKey(e => e.RecordId).HasName("PK__Record__D825195E7BAFD727");
+            entity.HasKey(e => e.RecordId).HasName("PK__Record__D825195E08EA2E60");
 
             entity.ToTable("Record");
 
@@ -217,17 +239,17 @@ public partial class ElderCareContext : DbContext
             entity.HasOne(d => d.Booking).WithMany(p => p.Records)
                 .HasForeignKey(d => d.BookingId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Record__bookingI__4CA06362");
+                .HasConstraintName("FK__Record__bookingI__4F7CD00D");
 
             entity.HasOne(d => d.Elder).WithMany(p => p.Records)
                 .HasForeignKey(d => d.ElderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Record__elderId__4BAC3F29");
+                .HasConstraintName("FK__Record__elderId__4E88ABD4");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__Role__CD98462A2E46D633");
+            entity.HasKey(e => e.RoleId).HasName("PK__Role__CD98462A64F99DCE");
 
             entity.ToTable("Role");
 
@@ -240,7 +262,7 @@ public partial class ElderCareContext : DbContext
 
         modelBuilder.Entity<Service>(entity =>
         {
-            entity.HasKey(e => e.ServiceId).HasName("PK__Service__455070DF00CD1D2D");
+            entity.HasKey(e => e.ServiceId).HasName("PK__Service__455070DFE6C7D45B");
 
             entity.ToTable("Service");
 
@@ -259,7 +281,7 @@ public partial class ElderCareContext : DbContext
 
         modelBuilder.Entity<Tracking>(entity =>
         {
-            entity.HasKey(e => e.TrackingId).HasName("PK__Tracking__A81574EE1748F010");
+            entity.HasKey(e => e.TrackingId).HasName("PK__Tracking__A81574EEAE639850");
 
             entity.ToTable("Tracking");
 
@@ -277,11 +299,20 @@ public partial class ElderCareContext : DbContext
             entity.HasOne(d => d.Elder).WithMany(p => p.Trackings)
                 .HasForeignKey(d => d.ElderId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tracking__elderI__4F7CD00D");
+                .HasConstraintName("FK__Tracking__elderI__52593CB8");
         });
 
         OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer(GetConnectionString());
+        }
+    }
+
 }

@@ -21,7 +21,7 @@ public partial class Booking
 
     public virtual Account Account { get; set; } = null!;
 
-    public virtual Account Caregiver { get; set; } = null!;
+    public virtual Caregiver Caregiver { get; set; } = null!;
 
     public virtual Elder? Elder { get; set; }
 
