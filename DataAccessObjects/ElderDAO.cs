@@ -6,7 +6,7 @@ using BusinessObjects;
 
 namespace DataAccessObjects
 {
-    public class ElderDAO : SingletonBase<Elder>
+    public class ElderDAO : SingletonBase<ElderDAO>
     {
         // Get all elders
         public List<Elder> GetAllElders()
