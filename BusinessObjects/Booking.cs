@@ -19,7 +19,11 @@ public partial class Booking
 
     public string Status { get; set; } = null!;
 
+    public string? RejectionReason { get; set; }
+
     public virtual Account Account { get; set; } = null!;
+
+    public virtual ICollection<BookingTimeSlot> BookingTimeSlots { get; set; } = new List<BookingTimeSlot>();
 
     public virtual Caregiver Caregiver { get; set; } = null!;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using DataAccesObjects;
+using DataAccessObjects;
 using ElderlyCareRazor.Models;
 using Services;
 using BusinessObjects;

@@ -17,6 +17,16 @@ public partial class Record
 
     public DateTime? LastUpdated { get; set; }
 
+    public DateTime? ClockInTime { get; set; }
+
+    public DateTime? ClockOutTime { get; set; }
+
+    public string? ExerciseGuidelines { get; set; }
+
+    public string? DietGuidelines { get; set; }
+
+    public string? OtherGuidelines { get; set; }
+
     public virtual Booking Booking { get; set; } = null!;
 
     public virtual Elder Elder { get; set; } = null!;

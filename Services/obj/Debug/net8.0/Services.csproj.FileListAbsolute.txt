@@ -13,3 +13,25 @@ C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Services\obj\Debug\net8
 C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Services\obj\Debug\net8.0\Services.pdb
 C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Services\obj\Debug\net8.0\Services.genruntimeconfig.cache
 C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\Services\obj\Debug\net8.0\ref\Services.dll
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\Services.deps.json
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\Services.runtimeconfig.json
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\Services.dll
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\Services.pdb
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\BusinessObjects.dll
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\DataAccessObjects.dll
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\Repositories.dll
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\BusinessObjects.pdb
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\Repositories.pdb
+C:\FPT\PRN222\New folder\HeathCare\Services\bin\Debug\net8.0\DataAccessObjects.pdb
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.sourcelink.json
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.dll
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\refint\Services.dll
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.pdb
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\Services.genruntimeconfig.cache
+C:\FPT\PRN222\New folder\HeathCare\Services\obj\Debug\net8.0\ref\Services.dll

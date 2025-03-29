@@ -25,6 +25,8 @@ public partial class Elder
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
+    public virtual ICollection<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
+
     public virtual ICollection<Record> Records { get; set; } = new List<Record>();
 
     public virtual ICollection<Tracking> Trackings { get; set; } = new List<Tracking>();
