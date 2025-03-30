@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositorie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{50B6D016-234D-4E14-8651-F2BE3554CFEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElderlyCareMVC", "ElderlyCareMVC\ElderlyCareMVC.csproj", "{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElderlyCareMVC", "ElderlyCareMVC\ElderlyCareMVC.csproj", "{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElderlyCareRazor", "ElderlyCareRazor\ElderlyCareRazor.csproj", "{79B64397-8027-40F0-A627-5FC0DA3D3856}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElderlyCareRazor", "ElderlyCareRazor\ElderlyCareRazor.csproj", "{79B64397-8027-40F0-A627-5FC0DA3D3856}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,6 @@
 using System.Globalization;
 using BusinessObjects;
 using DataAccessObjects;
-using DataAccessObjects;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -30,9 +29,30 @@ builder.Services.AddScoped<RoleDAO>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IBookingTimeSlotRepository, BookingTimeSlotRepository>();
+builder.Services.AddScoped<ICaregiverAvailabilityRepository, CaregiverAvailabilityRepository>();
+builder.Services.AddScoped<ICaregiverRepository, CaregiverRepository>();
+builder.Services.AddScoped<IElderRepository, ElderRepository>();
+builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+builder.Services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
+builder.Services.AddScoped<IRecordRepository, RecordRepository>();
+builder.Services.AddScoped<IServiceCategoryRepository, ServiceCategoryRepository>();
+builder.Services.AddScoped<ITrackingRepository, TrackingRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IServiceService, ServiceService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IBookingTimeSlotService, BookingTimeSlotService>();
+builder.Services.AddScoped<ICaregiverAvailabilityService, CaregiverAvailabilityService>();
+builder.Services.AddScoped<ICaregiverService, CaregiverService>();
+builder.Services.AddScoped<IElderService, ElderService>();
+builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
+builder.Services.AddScoped<IRecordService, RecordService>();
+builder.Services.AddScoped<IServiceCategoryService, ServiceCategoryService>();
+builder.Services.AddScoped<ITrackingService, TrackingService>();
+
 
 builder.Services.AddAuthorization();
 
