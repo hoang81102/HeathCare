@@ -1,5 +1,4 @@
 using BusinessObjects;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services;
@@ -10,26 +9,40 @@ namespace ElderlyCareRazor.Pages.Admin.Services
     public class IndexModel : PageModel
     {
         private readonly IServiceService _serviceService;
+        private readonly IServiceCategoryService _categoryService;
 
-        public List<Service> ServiceList { get; set; }
-
-        public IndexModel(IServiceService serviceService)
+        public IndexModel(IServiceService serviceService, IServiceCategoryService categoryService)
         {
             _serviceService = serviceService;
+            _categoryService = categoryService;
         }
 
-        public IActionResult OnGet()
+        public List<Service> Services { get; set; } = new List<Service>();
+        private Dictionary<int, string> CategoryNames { get; set; } = new Dictionary<int, string>();
+
+        public void OnGet()
         {
-            var userRole = HttpContext.Session.GetString("UserRole");
+            Services = _serviceService.GetAllServices();
+            LoadCategories();
+        }
 
-            if (userRole == null || (userRole != "admin" && userRole != "care"))
+        private void LoadCategories()
+        {
+            var categories = _categoryService.GetAllCategories();
+            CategoryNames.Clear();
+            foreach (var category in categories)
             {
-                TempData["ErrorMessage"] = "You do not have permission to access this page.";
-                return RedirectToPage("/Auth/Login");
+                CategoryNames[category.CategoryId] = category.CategoryName;
             }
+        }
 
-            ServiceList = _serviceService.GetAllServices();
-            return Page();
+        public string GetCategoryName(int categoryId)
+        {
+            if (CategoryNames.ContainsKey(categoryId))
+            {
+                return CategoryNames[categoryId];
+            }
+            return "Unknown";
         }
     }
 }

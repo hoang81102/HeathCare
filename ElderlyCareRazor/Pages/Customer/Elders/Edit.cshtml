@@ -1,4 +1,86 @@
 ﻿@page
 @model ElderlyCareRazor.Pages.Customer.Elders.EditModel
 @{
+    ViewData["Title"] = "Edit Elder";
+}
+
+<div class="container mt-4">
+    <div class="mb-4">
+        <a asp-page="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Elders
+        </a>
+    </div>
+
+    @if (Model.Elder == null)
+    {
+        <div class="alert alert-warning" role="alert">
+            Elder not found or you don't have permission to edit this elder.
+        </div>
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Edit Elder: @Model.Elder.Fullname</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <input type="hidden" asp-for="Elder.ElderId" />
+                    <input type="hidden" asp-for="Elder.AccountId" />
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Elder.Fullname" class="form-label">Full Name <span class="text-danger">*</span></label>
+                        <input asp-for="Elder.Fullname" class="form-control" />
+                        <span asp-validation-for="Elder.Fullname" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Elder.Birthdate" class="form-label">Date of Birth</label>
+                        <input asp-for="Elder.Birthdate" type="date" class="form-control" value="@(Model.Elder.Birthdate.HasValue ? Model.Elder.Birthdate.Value.ToString("yyyy-MM-dd") : "")" />
+                        <span asp-validation-for="Elder.Birthdate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Elder.Phone" class="form-label">Phone Number</label>
+                        <input asp-for="Elder.Phone" class="form-control" />
+                        <span asp-validation-for="Elder.Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Elder.Address" class="form-label">Address</label>
+                        <textarea asp-for="Elder.Address" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Elder.Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Elder.Hobby" class="form-label">Hobbies</label>
+                        <textarea asp-for="Elder.Hobby" class="form-control" rows="3" placeholder="Reading, gardening, etc."></textarea>
+                        <span asp-validation-for="Elder.Hobby" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Elder.MedicalNote" class="form-label">Medical Notes</label>
+                        <textarea asp-for="Elder.MedicalNote" class="form-control" rows="5" placeholder="Please include any relevant medical information, allergies, medications, etc."></textarea>
+                        <span asp-validation-for="Elder.MedicalNote" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save"></i> Save Changes
+                        </button>
+
+                        <a asp-page="Details" asp-route-id="@Model.Elder.ElderId" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

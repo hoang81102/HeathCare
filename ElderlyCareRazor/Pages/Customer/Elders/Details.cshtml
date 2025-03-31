@@ -1,4 +1,178 @@
 ﻿@page
 @model ElderlyCareRazor.Pages.Customer.Elders.DetailsModel
 @{
+    ViewData["Title"] = "Elder Details";
 }
+
+<div class="container mt-4">
+    <div class="mb-4">
+        <a asp-page="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Elders
+        </a>
+    </div>
+
+    @if (Model.Elder == null)
+    {
+        <div class="alert alert-warning" role="alert">
+            Elder not found or you don't have permission to view this elder.
+        </div>
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">@Model.Elder.Fullname</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Personal Information</h4>
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-4">Full Name</dt>
+                            <dd class="col-sm-8">@Model.Elder.Fullname</dd>
+
+                            <dt class="col-sm-4">Date of Birth</dt>
+                            <dd class="col-sm-8">
+                                @(Model.Elder.Birthdate.HasValue ? Model.Elder.Birthdate.Value.ToString("MMMM dd, yyyy") : "Not specified")
+                            </dd>
+
+                            <dt class="col-sm-4">Age</dt>
+                            <dd class="col-sm-8">
+                                @if (Model.Elder.Birthdate.HasValue)
+                                {
+                                    var age = DateTime.Today.Year - Model.Elder.Birthdate.Value.Year;
+                                    if (new DateTime(Model.Elder.Birthdate.Value.Year, Model.Elder.Birthdate.Value.Month, Model.Elder.Birthdate.Value.Day) > DateTime.Today.AddYears(-age)) age--;
+                                    @age <text> years old</text>
+                                }
+                                else
+                                {
+                                    <text>Not specified</text>
+                                }
+                            </dd>
+
+                            <dt class="col-sm-4">Phone</dt>
+                            <dd class="col-sm-8">
+                                @(!string.IsNullOrEmpty(Model.Elder.Phone) ? Model.Elder.Phone : "Not specified")
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4>Additional Information</h4>
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-4">Address</dt>
+                            <dd class="col-sm-8">
+                                @(!string.IsNullOrEmpty(Model.Elder.Address) ? Model.Elder.Address : "Not specified")
+                            </dd>
+
+                            <dt class="col-sm-4">Hobbies</dt>
+                            <dd class="col-sm-8">
+                                @(!string.IsNullOrEmpty(Model.Elder.Hobby) ? Model.Elder.Hobby : "Not specified")
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h4>Medical Notes</h4>
+                    <hr />
+                    <div class="card">
+                        <div class="card-body">
+                            @if (!string.IsNullOrEmpty(Model.Elder.MedicalNote))
+                            {
+                                <p>@Model.Elder.MedicalNote</p>
+                            }
+                            else
+                            {
+                                <p class="text-muted">No medical notes provided.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h4>Recent Health Tracking</h4>
+                    <hr />
+
+                    @if (Model.RecentTrackings != null && Model.RecentTrackings.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Weight</th>
+                                        <th>Blood Pressure</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var tracking in Model.RecentTrackings)
+                                    {
+                                        <tr>
+                                            <td>@tracking.Date.ToString("MM/dd/yyyy")</td>
+                                            <td>@(tracking.Weight.HasValue ? $"{tracking.Weight} kg" : "N/A")</td>
+                                            <td>@(!string.IsNullOrEmpty(tracking.BloodPressure) ? tracking.BloodPressure : "N/A")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            No recent health tracking data available.
+                        </div>
+                    }
+                </div>
+
+                <div class="mt-4">
+                    <h4>Recent Care Records</h4>
+                    <hr />
+
+                    @if (Model.RecentRecords != null && Model.RecentRecords.Any())
+                    {
+                        <div class="list-group">
+                            @foreach (var record in Model.RecentRecords)
+                            {
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Record #@record.RecordId</h5>
+                                        <small>
+                                            <span class="badge @Model.GetStatusBadgeClass(record.Status)">@record.Status</span>
+                                        </small>
+                                    </div>
+                                    <p class="mb-1">@record.Description</p>
+                                    <small class="text-muted">Last updated: @record.LastUpdated</small>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            No recent care records available.
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-between">
+                    <a asp-page="Edit" asp-route-id="@Model.Elder.ElderId" class="btn btn-primary">
+                        <i class="bi bi-pencil"></i> Edit Elder
+                    </a>
+                    <div>
+                        <a asp-page="/Customer/MedicalRecords/Index" asp-route-elderId="@Model.Elder.ElderId" class="btn btn-info">
+                            <i class="bi bi-journal-medical"></i> Medical Records
+                        </a>
+                        <a asp-page="/Customer/Bookings/Create" asp-route-elderId="@Model.Elder.ElderId" class="btn btn-success">
+                            <i class="bi bi-calendar-plus"></i> Book Service
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

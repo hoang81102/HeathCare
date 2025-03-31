@@ -1,4 +1,245 @@
 ﻿@page
 @model ElderlyCareRazor.Pages.Customer.DashboardModel
 @{
+    ViewData["Title"] = "Customer Dashboard";
+}
+
+<div class="container mt-4">
+    <h2>Welcome to ElderCare</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="customerTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="services-tab" data-bs-toggle="tab" data-bs-target="#services" type="button" role="tab" aria-controls="services" aria-selected="true">Services</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">My Profile</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="elders-tab" data-bs-toggle="tab" data-bs-target="#elders" type="button" role="tab" aria-controls="elders" aria-selected="false">Manage Elders</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="customerTabContent">
+                        <div class="tab-pane fade show active" id="services" role="tabpanel" aria-labelledby="services-tab">
+                            <h3>Available Services</h3>
+
+                            @foreach (var category in Model.ServiceCategories)
+                            {
+                                string headerClass = category.CategoryName == "Health Care" ? "bg-primary" :
+                                category.CategoryName == "Personal Care" ? "bg-warning" :
+                                "bg-danger";
+
+                                <div class="card mb-4">
+                                    <div class="card-header text-white @headerClass">
+                                        <h4>@category.CategoryName</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            @foreach (var service in Model.Services.Where(s => s.CategoryId == category.CategoryId))
+                                            {
+                                                <div class="col-md-4 mb-3">
+                                                    <div class="card h-100">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">@service.ServiceName</h5>
+                                                            <p class="card-text">@service.Description</p>
+                                                            <p class="card-text"><strong>Price: </strong>$@service.Price</p>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <a href="/Customer/Bookings/Create?serviceId=@service.ServiceId" class="btn btn-success w-100">Book Service</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <h3>My Profile</h3>
+                            @if (Model.CurrentAccount != null)
+                            {
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h5>Personal Information</h5>
+                                                <p><strong>Full Name:</strong> @Model.CurrentAccount.Fullname</p>
+                                                <p><strong>Email:</strong> @Model.CurrentAccount.Email</p>
+                                                <p><strong>Phone:</strong> @(string.IsNullOrEmpty(Model.CurrentAccount.Phone) ? "Not provided" : Model.CurrentAccount.Phone)</p>
+                                                <p><strong>Address:</strong> @(string.IsNullOrEmpty(Model.CurrentAccount.Address) ? "Not provided" : Model.CurrentAccount.Address)</p>
+                                                <p><strong>Birthdate:</strong> @(Model.CurrentAccount.Birthdate.HasValue ? Model.CurrentAccount.Birthdate.Value.ToShortDateString() : "Not provided")</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h5>Account Information</h5>
+                                                <p><strong>Username:</strong> @Model.CurrentAccount.Username</p>
+                                                <p>
+                                                    <strong>Account Status:</strong>
+                                                    <span class="badge @(Model.CurrentAccount.AccountStatus == "active" ? "bg-success" : "bg-danger")">
+                                                        @Model.CurrentAccount.AccountStatus
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="text-end mt-3">
+                                            <a href="/Customer/Profile/Edit" class="btn btn-primary">Edit Profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-warning">
+                                    Unable to load profile information. Please try again later.
+                                </div>
+                            }
+                        </div>
+
+                        <div class="tab-pane fade" id="elders" role="tabpanel" aria-labelledby="elders-tab">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Manage Elders</h3>
+                                <a href="/Customer/Elders/Create" class="btn btn-primary">Add New Elder</a>
+                            </div>
+
+                            @if (Model.Elders != null && Model.Elders.Any())
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Date of Birth</th>
+                                                <th>Contact</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var elder in Model.Elders)
+                                            {
+                                                <tr>
+                                                    <td>@elder.Fullname</td>
+                                                    <td>@(elder.Birthdate.HasValue ? elder.Birthdate.Value.ToShortDateString() : "Not provided")</td>
+                                                    <td>@(string.IsNullOrEmpty(elder.Phone) ? "Not provided" : elder.Phone)</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <a href="/Customer/Elders/Details?id=@elder.ElderId" class="btn btn-info btn-sm">Details</a>
+                                                            <a href="/Customer/Elders/Edit?id=@elder.ElderId" class="btn btn-primary btn-sm">Edit</a>
+                                                            <a href="/Customer/MedicalRecords/Index?elderId=@elder.ElderId" class="btn btn-secondary btn-sm">Medical Records</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-info">
+                                    You haven't added any elders yet. Click the "Add New Elder" button to get started.
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4>Upcoming Bookings</h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.UpcomingBookings != null && Model.UpcomingBookings.Any())
+                    {
+                        <div class="list-group">
+                            @foreach (var booking in Model.UpcomingBookings)
+                            {
+                                <a href="/Customer/Bookings/Details?id=@booking.BookingId" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">@booking.BookingDateTime.ToString("MMM dd, yyyy - hh:mm tt")</h5>
+                                        <small class="text-muted">@booking.Status</small>
+                                    </div>
+                                    <p class="mb-1">Elder: @Model.GetElderName(booking.ElderId)</p>
+                                    <small>Caregiver: @Model.GetCaregiverName(booking.CaregiverId)</small>
+                                </a>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No upcoming bookings.</p>
+                    }
+                    <div class="text-center mt-3">
+                        <a href="/Customer/Bookings/Index" class="btn btn-outline-primary">View All Bookings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h4>Recent Activity</h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.CompletedBookings != null && Model.CompletedBookings.Any())
+                    {
+                        <div class="list-group">
+                            @foreach (var booking in Model.CompletedBookings.Take(5))
+                            {
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Service Completed</h5>
+                                        <small class="text-muted">@booking.BookingDateTime.ToString("MMM dd, yyyy")</small>
+                                    </div>
+                                    <p class="mb-1">Service completed for @Model.GetElderName(booking.ElderId)</p>
+                                    <div class="d-flex justify-content-end">
+                                        @if (!Model.HasFeedback(booking.BookingId))
+                                        {
+                                            <a href="/Customer/Feedback/Create?bookingId=@booking.BookingId" class="btn btn-sm btn-outline-primary">Leave Feedback</a>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Feedback Provided</span>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-center">No recent activities.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Initialize Bootstrap tabs
+        document.addEventListener('DOMContentLoaded', function () {
+            var triggerTabList = [].slice.call(document.querySelectorAll('#customerTabs a'))
+            triggerTabList.forEach(function (triggerEl) {
+                var tabTrigger = new bootstrap.Tab(triggerEl)
+                triggerEl.addEventListener('click', function (event) {
+                    event.preventDefault()
+                    tabTrigger.show()
+                })
+            })
+        });
+    </script>
 }
