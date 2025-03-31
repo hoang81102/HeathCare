@@ -131,7 +131,7 @@ namespace ElderlyCareRazor.Pages.Admin.Accounts
                 // If changing password
                 if (ChangePassword && !string.IsNullOrWhiteSpace(Input.NewPassword))
                 {
-                    account.Password = HashPassword(Input.NewPassword);
+                    account.Password = Input.NewPassword;
                 }
 
                 await _accountService.UpdateAccountAsync(account);

@@ -69,7 +69,7 @@ namespace ElderlyCareRazor.Pages.Admin.Accounts
                 var account = new Account
                 {
                     Username = Input.Username,
-                    Password = hashedPassword,
+                    Password = Input.Password,
                     Email = Input.Email,
                     Phone = Input.Phone,
                     Fullname = Input.Fullname,

@@ -68,6 +68,7 @@ namespace ElderlyCareRazor.Pages.Auth
             HttpContext.Session.SetInt32("AccountId", user.AccountId);
             HttpContext.Session.SetString("Username", user.Username);
             HttpContext.Session.SetString("UserRole", user.RoleId == 1 ? "client" : user.RoleId == 2 ? "admin" : "care");
+            HttpContext.Session.SetString("Role", user.RoleId == 1 ? "Admin" : user.RoleId == 2 ? "Customer" : "Caregiver");
 
             var userJson = JsonSerializer.Serialize(user);
             HttpContext.Session.SetString("User", userJson);
@@ -163,6 +164,7 @@ namespace ElderlyCareRazor.Pages.Auth
 
                 HttpContext.Session.SetString("Username", account.Username);
                 HttpContext.Session.SetString("UserRole", account.RoleId == 1 ? "client" : account.RoleId == 2 ? "admin" : "care");
+                HttpContext.Session.SetString("Role", account.RoleId == 1 ? "Admin" : account.RoleId == 2 ? "Customer" : "Caregiver");
 
             }
             else
@@ -178,6 +180,8 @@ namespace ElderlyCareRazor.Pages.Auth
 
                 HttpContext.Session.SetString("Username", account.Username);
                 HttpContext.Session.SetString("UserRole", account.RoleId == 1 ? "client" : "admin");
+                HttpContext.Session.SetString("Role", account.RoleId == 1 ? "Admin" : account.RoleId == 2 ? "Customer" : "Caregiver");
+
             }
 
             return RedirectToPage("/Index");
