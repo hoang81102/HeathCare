@@ -6,7 +6,7 @@
 
 <div class="container">
     <h1 class="mb-4">Welcome, @Model.CurrentCaregiver.Account.Fullname</h1>
-    
+
     <div class="row">
         <!-- Overview Stats -->
         <div class="col-md-4">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Quick Actions -->
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
@@ -41,6 +41,9 @@
                 </div>
                 <div class="card-body">
                     <div class="list-group">
+                        <a href="/Caregiver/Profile/Edit" class="list-group-item list-group-item-action">
+                            <i class="bi bi-person-circle me-2"></i> Edit Profile
+                        </a>
                         <a href="/Caregiver/Availability/Index" class="list-group-item list-group-item-action">
                             <i class="bi bi-calendar-check me-2"></i> Manage Availability
                         </a>
@@ -53,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Ratings Summary -->
             @if (Model.AverageRating > 0)
             {
@@ -79,7 +82,7 @@
                             </div>
                             <small class="text-muted">Based on customer feedback</small>
                         </div>
-                        
+
                         @if (Model.DetailedRatings != null && Model.DetailedRatings.Count > 0)
                         {
                             <h6>Detailed Ratings</h6>
@@ -90,7 +93,7 @@
                                     <small>@rating.Value.ToString("F1")</small>
                                 </div>
                                 <div class="progress mb-2" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: @(rating.Value * 20)%;" 
+                                    <div class="progress-bar" role="progressbar" style="width: @(rating.Value * 20)%;"
                                          aria-valuenow="@rating.Value" aria-valuemin="0" aria-valuemax="5"></div>
                                 </div>
                             }
@@ -99,7 +102,7 @@
                 </div>
             }
         </div>
-        
+
         <!-- Upcoming Bookings -->
         <div class="col-md-8">
             <div class="card mb-4">
@@ -146,7 +149,7 @@
                     }
                 </div>
             </div>
-            
+
             <!-- Active Sessions -->
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
@@ -193,7 +196,7 @@
                     }
                 </div>
             </div>
-            
+
             <!-- Upcoming Bookings -->
             <div class="card">
                 <div class="card-header bg-primary text-white">
@@ -251,9 +254,9 @@
 @section Scripts {
     <script>
         // Add any dashboard-specific JavaScript here
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Example: Refresh the dashboard automatically every 5 minutes
-            setTimeout(function() {
+            setTimeout(function () {
                 location.reload();
             }, 300000); // 5 minutes
         });

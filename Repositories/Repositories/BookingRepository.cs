@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using BusinessObjects;
 using DataAccessObjects;
 
@@ -56,10 +56,10 @@ namespace Repositories
         }
 
         public int CreateBookingWithTimeSlot(int accountId, int serviceId, int caregiverId, int elderId,
-                                           DateTime bookingDate, TimeSpan startTime, TimeSpan endTime)
+                                          DateTime bookingDate, TimeSpan startTime, TimeSpan endTime)
         {
             return _bookingDAO.CreateBookingWithTimeSlot(accountId, serviceId, caregiverId, elderId,
-                                                       bookingDate, startTime, endTime);
+                                                     bookingDate, startTime, endTime);
         }
 
         public void UpdateBookingStatus(int bookingId, string newStatus, string rejectionReason = null)

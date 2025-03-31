@@ -106,6 +106,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Conflicts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxDb25mbGljdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Bookings/Accept.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEJvb2tpbmdzXEFjY2VwdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -124,6 +140,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Profile/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFByb2ZpbGVcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Records/Details.cshtml]
@@ -212,6 +232,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/MedicalRecords/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWVkaWNhbFJlY29yZHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Profile/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcUHJvZmlsZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Error.cshtml]

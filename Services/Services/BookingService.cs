@@ -66,6 +66,8 @@ namespace Services
                 throw new Exception("The selected time slot is not available.");
             }
 
+            // Fix: Make sure we're calling the repository method with the correct number of parameters
+            // The stored procedure expects 7 parameters according to the SQL definition
             return _bookingRepository.CreateBookingWithTimeSlot(
                 accountId, serviceId, caregiverId, elderId, bookingDate, startTime, endTime);
         }
@@ -74,7 +76,7 @@ namespace Services
         {
             try
             {
-                _bookingRepository.UpdateBookingStatus(bookingId, "Accepted");
+                _bookingRepository.UpdateBookingStatus(bookingId, "accepted");
                 return true;
             }
             catch
@@ -92,7 +94,7 @@ namespace Services
 
             try
             {
-                _bookingRepository.UpdateBookingStatus(bookingId, "Rejected", rejectionReason);
+                _bookingRepository.UpdateBookingStatus(bookingId, "rejected", rejectionReason);
                 return true;
             }
             catch
@@ -105,7 +107,7 @@ namespace Services
         {
             try
             {
-                _bookingRepository.UpdateBookingStatus(bookingId, "Cancelled");
+                _bookingRepository.UpdateBookingStatus(bookingId, "canceled");
                 return true;
             }
             catch
@@ -164,7 +166,7 @@ namespace Services
 
             // Filter to only include upcoming bookings (status is Accepted and date is in the future)
             return accountBookings
-                .Where(b => b.Status == "Accepted" &&
+                .Where(b => b.Status == "accepted" &&
                             b.BookingDateTime > DateTime.Now)
                 .OrderBy(b => b.BookingDateTime)
                 .ToList();
@@ -177,7 +179,7 @@ namespace Services
 
             // Filter to only include upcoming bookings (status is Accepted and date is in the future)
             return caregiverBookings
-                .Where(b => b.Status == "Accepted" &&
+                .Where(b => b.Status == "accepted" &&
                             b.BookingDateTime > DateTime.Now)
                 .OrderBy(b => b.BookingDateTime)
                 .ToList();
@@ -190,7 +192,7 @@ namespace Services
 
             // Filter to only include completed bookings (status is Completed)
             return accountBookings
-                .Where(b => b.Status == "Completed")
+                .Where(b => b.Status == "completed")
                 .OrderByDescending(b => b.BookingDateTime)
                 .ToList();
         }

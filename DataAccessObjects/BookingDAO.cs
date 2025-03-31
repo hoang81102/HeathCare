@@ -174,11 +174,15 @@ namespace DataAccessObjects
         }
 
         // Create a new booking with time slot (using stored procedure)
+        // FIXED: Corrected to match the stored procedure parameter count in the database
+        // Create a new booking with time slot (using stored procedure)
+        // FIXED: Correctly handle the stored procedure result
         public int CreateBookingWithTimeSlot(int accountId, int serviceId, int caregiverId, int elderId,
-                                            DateTime bookingDate, TimeSpan startTime, TimeSpan endTime)
+                                          DateTime bookingDate, TimeSpan startTime, TimeSpan endTime)
         {
             try
             {
+                // Create parameters according to the stored procedure definition
                 var accountIdParam = new SqlParameter("@accountId", accountId);
                 var serviceIdParam = new SqlParameter("@serviceId", serviceId);
                 var caregiverIdParam = new SqlParameter("@caregiverId", caregiverId);
@@ -186,14 +190,42 @@ namespace DataAccessObjects
                 var dateParam = new SqlParameter("@bookingDate", bookingDate.Date);
                 var startTimeParam = new SqlParameter("@startTime", startTime);
                 var endTimeParam = new SqlParameter("@endTime", endTime);
-                var outputParam = new SqlParameter("@NewBookingId", System.Data.SqlDbType.Int) { Direction = System.Data.ParameterDirection.Output };
 
-                _context.Database.ExecuteSqlRaw(
-                    "EXEC CreateBookingWithTimeSlot @accountId, @serviceId, @caregiverId, @elderId, @bookingDate, @startTime, @endTime, @NewBookingId OUTPUT",
-                    accountIdParam, serviceIdParam, caregiverIdParam, elderIdParam,
-                    dateParam, startTimeParam, endTimeParam, outputParam);
+                // Create a simple command to execute the stored procedure
+                using (var command = _context.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandText = "EXEC CreateBookingWithTimeSlot @accountId, @serviceId, @caregiverId, @elderId, @bookingDate, @startTime, @endTime";
+                    command.CommandType = System.Data.CommandType.Text;
 
-                return (int)outputParam.Value;
+                    // Add parameters to the command
+                    command.Parameters.Add(accountIdParam);
+                    command.Parameters.Add(serviceIdParam);
+                    command.Parameters.Add(caregiverIdParam);
+                    command.Parameters.Add(elderIdParam);
+                    command.Parameters.Add(dateParam);
+                    command.Parameters.Add(startTimeParam);
+                    command.Parameters.Add(endTimeParam);
+
+                    // Ensure the connection is open
+                    if (command.Connection.State != System.Data.ConnectionState.Open)
+                    {
+                        command.Connection.Open();
+                    }
+
+                    // Execute the command and read the result
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int bookingId = reader.GetInt32(reader.GetOrdinal("NewBookingId"));
+                            return bookingId;
+                        }
+                        else
+                        {
+                            throw new Exception("Failed to create booking: No booking ID returned.");
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -6,8 +6,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ElderlyCareRazor.Pages.Admin.Accounts
@@ -43,7 +42,19 @@ namespace ElderlyCareRazor.Pages.Admin.Accounts
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            // Ensure user is authorized as admin
+            var accountId = HttpContext.Session.GetInt32("AccountId");
+            if (accountId == null)
 
+            {
+                return RedirectToPage("/Auth/Login");
+            }
+
+            var roleIdString = HttpContext.Session.GetString("Role");
+            if (roleIdString != "Admin")
+            {
+                return RedirectToPage("/Auth/Login");
+            }
 
             if (id == null)
             {
@@ -102,6 +113,13 @@ namespace ElderlyCareRazor.Pages.Admin.Accounts
                 }
             }
 
+            // Handle password validation only if changing password is checked
+            if (!ChangePassword)
+            {
+                ModelState.Remove("Input.NewPassword");
+                ModelState.Remove("Input.ConfirmNewPassword");
+            }
+
             if (!ModelState.IsValid)
             {
                 await LoadDropdownDataAsync();
@@ -128,9 +146,13 @@ namespace ElderlyCareRazor.Pages.Admin.Accounts
                 account.AccountStatus = Input.AccountStatus;
                 account.RoleId = Input.RoleId;
 
-                // If changing password
+                // Set password to empty string by default to keep existing password
+                account.Password = string.Empty;
+
+                // If changing password and a new password was provided
                 if (ChangePassword && !string.IsNullOrWhiteSpace(Input.NewPassword))
                 {
+                    // No need to hash here as it will be handled by UpdateAccountAsync
                     account.Password = Input.NewPassword;
                 }
 
@@ -206,23 +228,6 @@ namespace ElderlyCareRazor.Pages.Admin.Accounts
                 new SelectListItem { Value = "inactive", Text = "Inactive" }
             };
             StatusOptions = new SelectList(statusOptions, "Value", "Text");
-        }
-
-        private string HashPassword(string password)
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // Convert the input string to a byte array and compute the hash
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(password));
-
-                // Convert byte array to a string
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
         }
     }
 

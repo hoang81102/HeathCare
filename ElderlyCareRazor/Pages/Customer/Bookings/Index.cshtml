@@ -1,4 +1,364 @@
 ﻿@page
 @model ElderlyCareRazor.Pages.Customer.Bookings.IndexModel
 @{
+    ViewData["Title"] = "My Bookings";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>My Bookings</h2>
+        <a href="/Customer/Dashboard" class="btn btn-outline-primary">Back to Dashboard</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(TempData["SuccessMessage"]?.ToString()))
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(TempData["ErrorMessage"]?.ToString()))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs" id="bookingTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab" aria-controls="upcoming" aria-selected="true">Upcoming</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab" aria-controls="pending" aria-selected="false">Pending</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab" aria-controls="past" aria-selected="false">Past Bookings</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled" type="button" role="tab" aria-controls="cancelled" aria-selected="false">Cancelled</button>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <div class="tab-content" id="bookingTabContent">
+                <!-- Upcoming Bookings Tab -->
+                <div class="tab-pane fade show active" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
+                    @if (Model.UpcomingBookings.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Service</th>
+                                        <th>Elder</th>
+                                        <th>Caregiver</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model.UpcomingBookings)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @(Model.GetBookingDate(booking.BookingId)?.ToString("MMM dd, yyyy") ?? "N/A")<br>
+                                                <small class="text-muted">
+                                                    @(Model.GetBookingTime(booking.BookingId) ?? "Time not specified")
+                                                </small>
+                                            </td>
+                                            <td>@Model.GetServiceName(booking.ServiceId)</td>
+                                            <td>@Model.GetElderName(booking.ElderId)</td>
+                                            <td>@Model.GetCaregiverName(booking.CaregiverId)</td>
+                                            <td>
+                                                <span class="badge @Model.GetStatusBadgeClass(booking.Status)">
+                                                    @booking.Status
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="/Customer/Bookings/Details?id=@booking.BookingId" class="btn btn-primary btn-sm">
+                                                        <i class="bi bi-eye"></i> View
+                                                    </a>
+                                                    @if (Model.CanBeCancelled(booking))
+                                                    {
+                                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cancelModal-@booking.BookingId">
+                                                            <i class="bi bi-x-circle"></i> Cancel
+                                                        </button>
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <h5>No upcoming bookings</h5>
+                            <p class="text-muted">You don't have any upcoming appointments scheduled.</p>
+                            <a href="/Customer/Dashboard" class="btn btn-primary mt-2">Book a Service</a>
+                        </div>
+                    }
+                </div>
+                
+                <!-- Pending Bookings Tab -->
+                <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                    @if (Model.PendingBookings.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Service</th>
+                                        <th>Elder</th>
+                                        <th>Caregiver</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model.PendingBookings)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @(Model.GetBookingDate(booking.BookingId)?.ToString("MMM dd, yyyy") ?? "N/A")<br>
+                                                <small class="text-muted">
+                                                    @(Model.GetBookingTime(booking.BookingId) ?? "Time not specified")
+                                                </small>
+                                            </td>
+                                            <td>@Model.GetServiceName(booking.ServiceId)</td>
+                                            <td>@Model.GetElderName(booking.ElderId)</td>
+                                            <td>@Model.GetCaregiverName(booking.CaregiverId)</td>
+                                            <td>
+                                                <span class="badge @Model.GetStatusBadgeClass(booking.Status)">
+                                                    @booking.Status
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="/Customer/Bookings/Details?id=@booking.BookingId" class="btn btn-primary btn-sm">
+                                                        <i class="bi bi-eye"></i> View
+                                                    </a>
+                                                    @if (Model.CanBeCancelled(booking))
+                                                    {
+                                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#cancelModal-@booking.BookingId">
+                                                            <i class="bi bi-x-circle"></i> Cancel
+                                                        </button>
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <h5>No pending bookings</h5>
+                            <p class="text-muted">You don't have any pending booking requests.</p>
+                            <a href="/Customer/Dashboard" class="btn btn-primary mt-2">Book a Service</a>
+                        </div>
+                    }
+                </div>
+                
+                <!-- Past Bookings Tab -->
+                <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
+                    @if (Model.PastBookings.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Service</th>
+                                        <th>Elder</th>
+                                        <th>Caregiver</th>
+                                        <th>Status</th>
+                                        <th>Feedback</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model.PastBookings)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @(Model.GetBookingDate(booking.BookingId)?.ToString("MMM dd, yyyy") ?? "N/A")<br>
+                                                <small class="text-muted">
+                                                    @(Model.GetBookingTime(booking.BookingId) ?? "Time not specified")
+                                                </small>
+                                            </td>
+                                            <td>@Model.GetServiceName(booking.ServiceId)</td>
+                                            <td>@Model.GetElderName(booking.ElderId)</td>
+                                            <td>@Model.GetCaregiverName(booking.CaregiverId)</td>
+                                            <td>
+                                                <span class="badge @Model.GetStatusBadgeClass(booking.Status)">
+                                                    @booking.Status
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @if (booking.Status == "completed")
+                                                {
+                                                    if (Model.HasFeedback(booking.BookingId))
+                                                    {
+                                                        <span class="badge bg-success">Provided</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="/Customer/Feedback/Create?bookingId=@booking.BookingId" class="btn btn-outline-primary btn-sm">
+                                                            <i class="bi bi-chat-square-text"></i> Leave Feedback
+                                                        </a>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span>N/A</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="/Customer/Bookings/Details?id=@booking.BookingId" class="btn btn-primary btn-sm">
+                                                    <i class="bi bi-eye"></i> View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <h5>No past bookings</h5>
+                            <p class="text-muted">You don't have any completed or past bookings.</p>
+                        </div>
+                    }
+                </div>
+                
+                <!-- Cancelled Bookings Tab -->
+                <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="cancelled-tab">
+                    @if (Model.CancelledBookings.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-striped align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Service</th>
+                                        <th>Elder</th>
+                                        <th>Caregiver</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model.CancelledBookings)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @(Model.GetBookingDate(booking.BookingId)?.ToString("MMM dd, yyyy") ?? "N/A")<br>
+                                                <small class="text-muted">
+                                                    @(Model.GetBookingTime(booking.BookingId) ?? "Time not specified")
+                                                </small>
+                                            </td>
+                                            <td>@Model.GetServiceName(booking.ServiceId)</td>
+                                            <td>@Model.GetElderName(booking.ElderId)</td>
+                                            <td>@Model.GetCaregiverName(booking.CaregiverId)</td>
+                                            <td>
+                                                <span class="badge @Model.GetStatusBadgeClass(booking.Status)">
+                                                    @booking.Status
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href="/Customer/Bookings/Details?id=@booking.BookingId" class="btn btn-primary btn-sm">
+                                                    <i class="bi bi-eye"></i> View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <h5>No cancelled bookings</h5>
+                            <p class="text-muted">You don't have any cancelled bookings.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Modals -->
+@foreach (var booking in Model.AllBookings.Where(b => Model.CanBeCancelled(b)))
+{
+    <div class="modal fade" id="cancelModal-@booking.BookingId" tabindex="-1" aria-labelledby="cancelModalLabel-@booking.BookingId" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelModalLabel-@booking.BookingId">Cancel Booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to cancel this booking?</p>
+                    <p><strong>Service:</strong> @Model.GetServiceName(booking.ServiceId)</p>
+                    <p><strong>Date:</strong> @(Model.GetBookingDate(booking.BookingId)?.ToString("MMMM d, yyyy") ?? "N/A")</p>
+                    <p><strong>Time:</strong> @(Model.GetBookingTime(booking.BookingId) ?? "Time not specified")</p>
+                    <p class="text-danger">This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form method="post" asp-page-handler="CancelBooking">
+                        <input type="hidden" name="id" value="@booking.BookingId" />
+                        <button type="submit" class="btn btn-danger">Cancel Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Initialize tabs
+            var triggerTabList = [].slice.call(document.querySelectorAll('#bookingTabs button'));
+            triggerTabList.forEach(function(triggerEl) {
+                var tabTrigger = new bootstrap.Tab(triggerEl);
+                triggerEl.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    tabTrigger.show();
+                });
+            });
+            
+            // Auto-dismiss alerts after 5 seconds
+            setTimeout(function() {
+                $('.alert').alert('close');
+            }, 5000);
+            
+            // If the URL has a tab parameter, activate that tab
+            const urlParams = new URLSearchParams(window.location.search);
+            const tab = urlParams.get('tab');
+            if (tab) {
+                const tabElement = document.querySelector(`#${tab}-tab`);
+                if (tabElement) {
+                    bootstrap.Tab.getInstance(tabElement).show();
+                }
+            }
+        });
+    </script>
 }
