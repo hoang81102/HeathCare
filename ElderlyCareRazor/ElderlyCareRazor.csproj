@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\Admin\Accounts\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj" />
     <ProjectReference Include="..\DataAccessObjects\DataAccessObjects.csproj" />
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
@@ -21,6 +25,18 @@
 
   <ItemGroup>
     <Folder Include="Pages\Admin\Reports\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Admin\Accounts\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Admin\Accounts\Delete.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Admin\Accounts\Delete.cshtml" />
   </ItemGroup>
 
 </Project>

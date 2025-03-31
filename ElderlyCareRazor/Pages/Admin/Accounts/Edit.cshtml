@@ -1,4 +1,196 @@
-﻿@page
+﻿@page "{id:int}"
 @model ElderlyCareRazor.Pages.Admin.Accounts.EditModel
 @{
+    ViewData["Title"] = "Edit Account";
+}
+
+<div class="container mt-4">
+    <h1>Edit Account</h1>
+    <hr />
+
+    <form method="post">
+        <input type="hidden" asp-for="Input.AccountId" />
+        <input type="hidden" asp-for="CaregiverInput.CaregiverId" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Basic Account Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.Username" class="form-label"></label>
+                                <input asp-for="Input.Username" class="form-control" />
+                                <span asp-validation-for="Input.Username" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.RoleId" class="form-label"></label>
+                                <select asp-for="Input.RoleId" asp-items="Model.RoleList" class="form-select" id="roleSelect">
+                                    <option value="">-- Select Role --</option>
+                                </select>
+                                <span asp-validation-for="Input.RoleId" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.AccountStatus" class="form-label"></label>
+                                <select asp-for="Input.AccountStatus" asp-items="Model.StatusOptions" class="form-select">
+                                    <option value="">-- Select Status --</option>
+                                </select>
+                                <span asp-validation-for="Input.AccountStatus" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" asp-for="ChangePassword" id="changePasswordCheck" />
+                                    <label class="form-check-label" for="changePasswordCheck">
+                                        Change Password
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="passwordSection" style="display: none;">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.NewPassword" class="form-label"></label>
+                                    <input asp-for="Input.NewPassword" class="form-control" />
+                                    <span asp-validation-for="Input.NewPassword" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="Input.ConfirmNewPassword" class="form-label"></label>
+                                    <input asp-for="Input.ConfirmNewPassword" class="form-control" />
+                                    <span asp-validation-for="Input.ConfirmNewPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Personal Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.Fullname" class="form-label"></label>
+                                <input asp-for="Input.Fullname" class="form-control" />
+                                <span asp-validation-for="Input.Fullname" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.Email" class="form-label"></label>
+                                <input asp-for="Input.Email" class="form-control" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.Phone" class="form-label"></label>
+                                <input asp-for="Input.Phone" class="form-control" />
+                                <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Input.Birthdate" class="form-label"></label>
+                                <input asp-for="Input.Birthdate" class="form-control" type="date" />
+                                <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="Input.Address" class="form-label"></label>
+                                <textarea asp-for="Input.Address" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="Input.Address" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label asp-for="Input.Hobby" class="form-label"></label>
+                                <textarea asp-for="Input.Hobby" class="form-control" rows="2"></textarea>
+                                <span asp-validation-for="Input.Hobby" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caregiver Details - shown only when Caregiver role is selected -->
+            <div class="col-md-12 mb-3" id="caregiverSection" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Caregiver Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CaregiverInput.ExperienceYears" class="form-label"></label>
+                                <input asp-for="CaregiverInput.ExperienceYears" class="form-control" type="number" min="0" />
+                                <span asp-validation-for="CaregiverInput.ExperienceYears" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CaregiverInput.Availability" class="form-label"></label>
+                                <select asp-for="CaregiverInput.Availability" asp-items="Model.AvailabilityOptions" class="form-select">
+                                    <option value="">-- Select Availability --</option>
+                                </select>
+                                <span asp-validation-for="CaregiverInput.Availability" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CaregiverInput.Specialty" class="form-label"></label>
+                                <input asp-for="CaregiverInput.Specialty" class="form-control" />
+                                <span asp-validation-for="CaregiverInput.Specialty" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CaregiverInput.Certification" class="form-label"></label>
+                                <input asp-for="CaregiverInput.Certification" class="form-control" />
+                                <span asp-validation-for="CaregiverInput.Certification" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+            </div>
+            <div class="col-md-6 text-end">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        // Show/hide caregiver details based on role selection
+        $(document).ready(function () {
+            // Show/hide password section
+            $('#changePasswordCheck').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#passwordSection').show();
+                } else {
+                    $('#passwordSection').hide();
+                }
+            });
+
+            // Show/hide caregiver details
+            $('#roleSelect').change(function () {
+                var selectedRole = $(this).val();
+                if (selectedRole === '3') { // Assuming 3 is the Caregiver role ID
+                    $('#caregiverSection').show();
+                } else {
+                    $('#caregiverSection').hide();
+                }
+            });
+
+            // Initial check for caregiver section
+            if ($('#roleSelect').val() === '3') {
+                $('#caregiverSection').show();
+            }
+
+            // Initial check for password section
+            if ($('#changePasswordCheck').is(':checked')) {
+                $('#passwordSection').show();
+            }
+        });
+    </script>
 }

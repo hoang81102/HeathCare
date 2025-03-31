@@ -15,10 +15,5 @@ namespace Services
         List<BookingTimeSlot> GetTimeSlotsByDateRange(DateOnly startDate, DateOnly endDate);
         List<BookingTimeSlot> GetTimeSlotsByCaregiverId(int caregiverId, DateOnly? startDate = null, DateOnly? endDate = null);
         bool IsTimeSlotAvailable(int caregiverId, DateOnly bookingDate, TimeOnly startTime, TimeOnly endTime);
-
-        // Additional business logic methods can be added here
-        TimeSpan CalculateTotalDuration(int bookingId);
-        List<BookingTimeSlot> GetUpcomingTimeSlots(int caregiverId, int daysAhead = 7);
-        List<DateOnly> GetAvailableDates(int caregiverId, DateOnly startDate, DateOnly endDate);
     }
 }

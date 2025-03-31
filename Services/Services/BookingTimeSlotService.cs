@@ -101,65 +101,6 @@ namespace Services
             return _bookingTimeSlotRepository.IsTimeSlotAvailable(caregiverId, bookingDate, startTime, endTime);
         }
 
-        // Additional business logic methods
-        public TimeSpan CalculateTotalDuration(int bookingId)
-        {
-            var timeSlots = _bookingTimeSlotRepository.GetTimeSlotsByBookingId(bookingId);
-            TimeSpan totalDuration = TimeSpan.Zero;
-
-            foreach (var slot in timeSlots)
-            {
-                var duration = slot.EndTime.ToTimeSpan() - slot.StartTime.ToTimeSpan();
-                totalDuration += duration;
-            }
-
-            return totalDuration;
-        }
-
-        public List<BookingTimeSlot> GetUpcomingTimeSlots(int caregiverId, int daysAhead = 7)
-        {
-            var today = DateOnly.FromDateTime(DateTime.Today);
-            var endDate = today.AddDays(daysAhead);
-
-            return _bookingTimeSlotRepository.GetTimeSlotsByCaregiverId(caregiverId, today, endDate)
-                .OrderBy(ts => ts.BookingDate)
-                .ThenBy(ts => ts.StartTime)
-                .ToList();
-        }
-
-        public List<DateOnly> GetAvailableDates(int caregiverId, DateOnly startDate, DateOnly endDate)
-        {
-            if (startDate > endDate)
-            {
-                throw new ArgumentException("Start date must be before or equal to end date");
-            }
-
-            var availableDates = new List<DateOnly>();
-            var currentDate = startDate;
-
-            while (currentDate <= endDate)
-            {
-                // Get the day of week (1-7 for Monday-Sunday)
-                int dayOfWeek = ((int)currentDate.DayOfWeek + 6) % 7 + 1;
-
-                // Check if caregiver is available on this day of week
-                // This assumes we have access to context, but we don't through repository
-                // So this is a simplified version - in a real implementation we might want to add a repository method
-                // for this specific check or refactor to get caregiver availabilities
-
-                // For now, we'll simulate by checking if there are any bookings for this specific date
-                bool hasBookings = _bookingTimeSlotRepository.GetTimeSlotsByCaregiverId(caregiverId, currentDate, currentDate).Any();
-
-                // If no bookings on this date, and it's in the future, add it to available dates
-                if (!hasBookings && currentDate >= DateOnly.FromDateTime(DateTime.Today))
-                {
-                    availableDates.Add(currentDate);
-                }
-
-                currentDate = currentDate.AddDays(1);
-            }
-
-            return availableDates;
-        }
+        
     }
 }

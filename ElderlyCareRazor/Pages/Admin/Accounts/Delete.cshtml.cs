@@ -6,22 +6,25 @@ using System.Threading.Tasks;
 
 namespace ElderlyCareRazor.Pages.Admin.Accounts
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly IAccountService _accountService;
         private readonly IRoleService _roleService;
         private readonly ICaregiverService _caregiverService;
 
-        public DetailsModel(IAccountService accountService, IRoleService roleService, ICaregiverService caregiverService)
+        public DeleteModel(IAccountService accountService, IRoleService roleService, ICaregiverService caregiverService)
         {
             _accountService = accountService;
             _roleService = roleService;
             _caregiverService = caregiverService;
         }
 
+        [BindProperty]
         public Account Account { get; set; } = default!;
+
         public Role Role { get; set; } = default!;
-        public BusinessObjects.Caregiver Caregiver { get; set; } = default!;
+
+        public BusinessObjects.Caregiver? Caregiver { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -58,6 +61,33 @@ namespace ElderlyCareRazor.Pages.Admin.Accounts
             }
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var account = await _accountService.GetAccountByIdAsync(id.Value);
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                // Delete the account
+                await _accountService.DeleteAccountAsync(id.Value);
+                TempData["SuccessMessage"] = "Account deleted successfully";
+                return RedirectToPage("./Index");
+            }
+            catch (System.Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error deleting account: {ex.Message}";
+                return RedirectToPage("./Delete", new { id });
+            }
         }
     }
 }
