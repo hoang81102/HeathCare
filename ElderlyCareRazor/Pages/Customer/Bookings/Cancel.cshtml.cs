@@ -47,7 +47,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
         public bool CanBeCancelled { get; set; }
         public bool CancellationSuccessful { get; set; }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, long? noCache = null)
         {
             // Check if user is logged in
             var accountId = HttpContext.Session.GetInt32("AccountId");
@@ -62,10 +62,16 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
                 return RedirectToPage("/Auth/Login");
             }
 
+            // Add no-cache headers to prevent browser caching
+            Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
             BookingId = id;
 
-            // Get booking details
-            Booking = _bookingService.GetBookingById(id);
+            // Get fresh booking details from database
+            Booking = null; // Clear any previous reference
+            Booking = _bookingService.GetBookingById(id); // Get fresh data
 
             // Check if booking exists and belongs to the current user
             if (Booking == null || Booking.AccountId != accountId)
@@ -83,7 +89,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
             if (!CanBeCancelled)
             {
                 TempData["ErrorMessage"] = "This booking cannot be cancelled.";
-                return RedirectToPage("Details", new { id = BookingId });
+                return RedirectToPage("Details", new { id = BookingId, noCache = DateTime.Now.Ticks });
             }
 
             return Page();
@@ -104,7 +110,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
             // Load caregiver information
             Caregiver = _caregiverService.GetCaregiverById(Booking.CaregiverId);
 
-            // Load booking time slot
+            // Load booking time slot - ensure fresh data
             var timeSlots = _bookingTimeSlotService.GetTimeSlotsByBookingId(Booking.BookingId);
             BookingTimeSlot = timeSlots.FirstOrDefault();
         }
@@ -152,14 +158,19 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
                 return RedirectToPage("/Auth/Login");
             }
 
-            // Get booking details
+            // Add no-cache headers to prevent browser caching
+            Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
+            // Get fresh booking details from database
             var booking = _bookingService.GetBookingById(BookingId);
 
             // Check if booking exists and belongs to the current user
             if (booking == null || booking.AccountId != accountIdString)
             {
                 TempData["ErrorMessage"] = "Booking not found or you don't have permission to cancel it.";
-                return RedirectToPage("Index");
+                return RedirectToPage("Index", new { noCache = DateTime.Now.Ticks });
             }
 
             try
@@ -168,7 +179,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
                 if (booking.Status != "pending" && booking.Status != "accepted")
                 {
                     TempData["ErrorMessage"] = "Only pending or accepted bookings can be cancelled.";
-                    return RedirectToPage("Details", new { id = BookingId });
+                    return RedirectToPage("Details", new { id = BookingId, noCache = DateTime.Now.Ticks });
                 }
 
                 // Load time slot to check date/time
@@ -181,7 +192,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
                     if (timeSlot.BookingDate < DateOnly.FromDateTime(DateTime.Today))
                     {
                         TempData["ErrorMessage"] = "Past bookings cannot be cancelled.";
-                        return RedirectToPage("Details", new { id = BookingId });
+                        return RedirectToPage("Details", new { id = BookingId, noCache = DateTime.Now.Ticks });
                     }
 
                     // If the booking is today and the start time has passed, it can't be cancelled
@@ -191,7 +202,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
                         if (timeSlot.StartTime <= currentTime)
                         {
                             TempData["ErrorMessage"] = "Bookings that have already started cannot be cancelled.";
-                            return RedirectToPage("Details", new { id = BookingId });
+                            return RedirectToPage("Details", new { id = BookingId, noCache = DateTime.Now.Ticks });
                         }
                     }
                 }
@@ -205,19 +216,19 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
                     CancellationSuccessful = true;
                     TempData["SuccessMessage"] = "Booking has been successfully cancelled.";
 
-                    // Force a redirect to the Index page with a timestamp parameter to prevent caching
-                    return RedirectToPage("Index", new { t = DateTime.Now.Ticks });
+                    // Redirect to the Customer Dashboard page with cache-busting parameter
+                    return Redirect($"/Customer/Dashboard?noCache={DateTime.Now.Ticks}");
                 }
                 else
                 {
                     TempData["ErrorMessage"] = "Failed to cancel booking. Please try again.";
-                    return RedirectToPage("Details", new { id = BookingId });
+                    return RedirectToPage("Details", new { id = BookingId, noCache = DateTime.Now.Ticks });
                 }
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"Error cancelling booking: {ex.Message}";
-                return RedirectToPage("Details", new { id = BookingId });
+                return RedirectToPage("Details", new { id = BookingId, noCache = DateTime.Now.Ticks });
             }
         }
     }

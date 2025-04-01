@@ -30,11 +30,22 @@ namespace DataAccessObjects
         }
 
         // Get booking by ID
+        // Update the GetBookingById method to force a fresh database query
         public Booking GetBookingById(int bookingId)
         {
             try
             {
+                // Force EF to query the database instead of returning cached entity
+                // Use AsNoTracking() to prevent caching, and/or detach any existing entity
+                var existingEntity = _context.Bookings.Local.FirstOrDefault(b => b.BookingId == bookingId);
+                if (existingEntity != null)
+                {
+                    _context.Entry(existingEntity).State = EntityState.Detached;
+                }
+
+                // Now fetch a fresh copy from the database
                 return _context.Bookings
+                    .AsNoTracking()  // Prevents tracking
                     .Include(b => b.Account)
                     .Include(b => b.Caregiver)
                     .Include(b => b.Elder)

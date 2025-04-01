@@ -41,7 +41,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
         public List<Booking> PastBookings { get; set; }
         public List<Booking> CancelledBookings { get; set; }
 
-        public Dictionary<int, BookingTimeSlot> BookingTimeSlots { get; set; }
+        public Dictionary<int, BookingTimeSlot> BookingTimeSlots { get; set; } = new Dictionary<int, BookingTimeSlot>();
         public Dictionary<int, Service> Services { get; set; }
         public Dictionary<int, Elder> Elders { get; set; }
         public Dictionary<int, BusinessObjects.Caregiver> Caregivers { get; set; }
@@ -62,6 +62,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
             {
                 return RedirectToPage("/Auth/Login");
             }
+            InitializeTimeSlots(accountId.Value);
 
             // Load all bookings for this customer
             LoadBookings(accountId.Value);
@@ -71,7 +72,24 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
 
             return Page();
         }
+        private void InitializeTimeSlots(int accountId)
+        {
+            // Clear existing dictionary
+            BookingTimeSlots.Clear();
 
+            // Get all bookings for the customer
+            var bookings = _bookingService.GetBookingsByAccountId(accountId);
+
+            // For each booking, get the first time slot and add it to the dictionary
+            foreach (var booking in bookings)
+            {
+                var timeSlots = _bookingTimeSlotService.GetTimeSlotsByBookingId(booking.BookingId);
+                if (timeSlots.Any())
+                {
+                    BookingTimeSlots[booking.BookingId] = timeSlots.First();
+                }
+            }
+        }
         private void LoadBookings(int accountId)
         {
             // Get all bookings for the customer

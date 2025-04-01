@@ -74,7 +74,19 @@ namespace ElderlyCareRazor.Pages.Auth
             HttpContext.Session.SetString("User", userJson);
 
             TempData["SuccessMessage"] = "Login successful!";
-            return RedirectToPage("/Index");
+            // Redirect based on user role
+            if (user.RoleId == 1) // Admin
+            {
+                return RedirectToPage("/Admin/Dashboard");
+            }
+            else if (user.RoleId == 2) // Customer
+            {
+                return RedirectToPage("/Customer/Dashboard");
+            }
+            else // Caregiver (RoleId == 3)
+            {
+                return RedirectToPage("/Caregiver/Dashboard");
+            }
         }
 
 
