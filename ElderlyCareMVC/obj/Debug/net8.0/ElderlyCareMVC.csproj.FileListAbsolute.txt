@@ -29,34 +29,3 @@ C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\ElderlyCareMVC\obj\Debu
 C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.pdb
 C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.genruntimeconfig.cache
 C:\Users\Mot\Desktop\PRN222\Project\hoang81102\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ref\ElderlyCareMVC.dll
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\appsettings.Development.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\appsettings.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\ElderlyCareMVC.staticwebassets.runtime.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\ElderlyCareMVC.exe
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\ElderlyCareMVC.deps.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\ElderlyCareMVC.runtimeconfig.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\ElderlyCareMVC.dll
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\bin\Debug\net8.0\ElderlyCareMVC.pdb
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.GeneratedMSBuildEditorConfig.editorconfig
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.AssemblyInfoInputs.cache
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.AssemblyInfo.cs
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.csproj.CoreCompileInputs.cache
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.MvcApplicationPartsAssemblyInfo.cache
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.RazorAssemblyInfo.cache
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.RazorAssemblyInfo.cs
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.sourcelink.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\staticwebassets.build.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\staticwebassets.development.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\staticwebassets\msbuild.ElderlyCareMVC.Microsoft.AspNetCore.StaticWebAssets.props
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\staticwebassets\msbuild.build.ElderlyCareMVC.props
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.ElderlyCareMVC.props
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ElderlyCareMVC.props
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\staticwebassets.pack.json
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\scopedcss\bundle\ElderlyCareMVC.styles.css
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\scopedcss\projectbundle\ElderlyCareMVC.bundle.scp.css
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.dll
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\refint\ElderlyCareMVC.dll
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.pdb
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ElderlyCareMVC.genruntimeconfig.cache
-C:\FPT\PRN222\New folder\HeathCare\ElderlyCareMVC\obj\Debug\net8.0\ref\ElderlyCareMVC.dll

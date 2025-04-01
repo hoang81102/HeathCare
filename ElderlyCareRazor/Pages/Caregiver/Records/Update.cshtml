@@ -1,4 +1,86 @@
 ﻿@page
-@model ElderlyCareRazor.Pages.Caregiver.Records.CreateModel
+@model ElderlyCareRazor.Pages.Caregiver.Records.UpdateModel
 @{
+    ViewData["Title"] = "Update Record";
+    var isInProgress = Model.Record.Status == "InProgress";
+
+    string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Accepted" => "bg-secondary",
+            "InProgress" => "bg-primary",
+            "Finished" => "bg-success",
+            _ => "bg-secondary"
+        };
+    }
 }
+
+<div class="container-fluid">
+    <h2>Update Service Record</h2>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-info">@Model.StatusMessage</div>
+    }
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Record #@Model.Record.RecordId</h5>
+                    <span class="badge rounded-pill @GetStatusBadgeClass(Model.Record.Status)">@Model.Record.Status</span>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Elder Information</h6>
+                            <p><strong>Name:</strong> @Model.Elder.Fullname</p>
+                            <p><strong>Medical Notes:</strong> @(string.IsNullOrEmpty(Model.Elder.MedicalNote) ? "N/A" : Model.Elder.MedicalNote)</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Service Information</h6>
+                            <p><strong>Service:</strong> @(Model.Booking?.Service?.ServiceName ?? "N/A")</p>
+                            <p><strong>Date:</strong> @(Model.Booking?.BookingDateTime.ToString("MM/dd/yyyy") ?? "N/A")</p>
+                            <p><strong>Status:</strong> @Model.Record.Status</p>
+                            @if (Model.Record.ClockInTime.HasValue)
+                            {
+                                <p><strong>Clock In Time:</strong> @Model.Record.ClockInTime.Value.ToString("MM/dd/yyyy hh:mm tt")</p>
+                            }
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Record.RecordId" />
+
+                        <div class="mb-3">
+                            <label asp-for="Record.ExerciseGuidelines" class="form-label">Exercise Guidelines</label>
+                            <textarea asp-for="Record.ExerciseGuidelines" class="form-control" rows="4" placeholder="Enter exercise guidelines..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Record.DietGuidelines" class="form-label">Diet Guidelines</label>
+                            <textarea asp-for="Record.DietGuidelines" class="form-control" rows="4" placeholder="Enter diet guidelines..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Record.OtherGuidelines" class="form-label">Other Guidelines</label>
+                            <textarea asp-for="Record.OtherGuidelines" class="form-control" rows="4" placeholder="Enter other guidelines or notes..."></textarea>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a asp-page="./Details" asp-route-id="@Model.Record.RecordId" class="btn btn-secondary">Cancel</a>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Guidelines
+                            </button>
+
+                            @if (Model.Record.Status == "InProgress")
+                            {
+                                <a asp-page="./Update" asp-route-id="@Model.Record.RecordId" asp-route-action="clockout" class="btn btn-warning">
+                                    <i class="fas fa-clock"></i> Clock Out
+                                </a>
+                            }
+                        </div>
+                    </form>
+                </div>

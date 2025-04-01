@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
@@ -7,35 +9,31 @@ using Services;
 
 namespace ElderlyCareRazor.Pages.Caregiver.Records
 {
-    public class DetailsModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly IRecordService _recordService;
         private readonly IBookingService _bookingService;
         private readonly IElderService _elderService;
         private readonly ICaregiverService _caregiverService;
-        private readonly IMedicalRecordService _medicalRecordService;
 
-        public DetailsModel(
+        public IndexModel(
             IRecordService recordService,
             IBookingService bookingService,
             IElderService elderService,
-            ICaregiverService caregiverService,
-            IMedicalRecordService medicalRecordService)
+            ICaregiverService caregiverService)
         {
             _recordService = recordService;
             _bookingService = bookingService;
             _elderService = elderService;
             _caregiverService = caregiverService;
-            _medicalRecordService = medicalRecordService;
         }
 
-        public Record Record { get; set; }
-        public Booking Booking { get; set; }
-        public Elder Elder { get; set; }
-        public MedicalRecord LatestMedicalRecord { get; set; }
+        public List<Record> Records { get; set; } = new List<Record>();
+        public List<Booking> Bookings { get; set; } = new List<Booking>();
+        public Dictionary<int, Elder> ElderDict { get; set; } = new Dictionary<int, Elder>();
         public string StatusMessage { get; set; }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet()
         {
             // Check if user is logged in and is a caregiver
             var accountId = HttpContext.Session.GetInt32("AccountId");
@@ -55,27 +53,30 @@ namespace ElderlyCareRazor.Pages.Caregiver.Records
                     return RedirectToPage("/Auth/Login");
                 }
 
-                // Get the record
-                Record = _recordService.GetRecordById(id);
-                if (Record == null)
+                // Get records associated with this caregiver
+                Records = _recordService.GetRecordsByCaregiverId(caregiver.CaregiverId);
+
+                // Get related bookings
+                var bookingIds = Records.Select(r => r.BookingId).Distinct().ToList();
+                foreach (var bookingId in bookingIds)
                 {
-                    return NotFound();
+                    var booking = _bookingService.GetBookingById(bookingId);
+                    if (booking != null)
+                    {
+                        Bookings.Add(booking);
+                    }
                 }
 
-                // Get the booking
-                Booking = _bookingService.GetBookingById(Record.BookingId);
-
-                // Ensure this record belongs to the logged-in caregiver
-                if (Booking != null && Booking.CaregiverId != caregiver.CaregiverId)
+                // Get related elders
+                var elderIds = Records.Select(r => r.ElderId).Distinct().ToList();
+                foreach (var elderId in elderIds)
                 {
-                    return Forbid();
+                    var elder = _elderService.GetElderById(elderId);
+                    if (elder != null)
+                    {
+                        ElderDict[elderId] = elder;
+                    }
                 }
-
-                // Get the elder
-                Elder = _elderService.GetElderById(Record.ElderId);
-
-                // Get the latest medical record for this elder
-                LatestMedicalRecord = _medicalRecordService.GetLatestMedicalRecord(Record.ElderId);
 
                 return Page();
             }
