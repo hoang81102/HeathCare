@@ -21,11 +21,15 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="elders-tab" data-bs-toggle="tab" data-bs-target="#elders" type="button" role="tab" aria-controls="elders" aria-selected="false">Manage Elders</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="records-tab" data-bs-toggle="tab" data-bs-target="#records" type="button" role="tab" aria-controls="records" aria-selected="false">Records</button>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="customerTabContent">
                         <div class="tab-pane fade show active" id="services" role="tabpanel" aria-labelledby="services-tab">
+                            <!-- Existing Services Content -->
                             <h3>Available Services</h3>
 
                             @foreach (var category in Model.ServiceCategories)
@@ -59,10 +63,10 @@
                                     </div>
                                 </div>
                             }
-
                         </div>
 
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <!-- Existing Profile Content -->
                             <h3>My Profile</h3>
                             @if (Model.CurrentAccount != null)
                             {
@@ -103,6 +107,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="elders" role="tabpanel" aria-labelledby="elders-tab">
+                            <!-- Existing Elders Content -->
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h3>Manage Elders</h3>
                                 <a href="/Customer/Elders/Create" class="btn btn-primary">Add New Elder</a>
@@ -147,6 +152,83 @@
                                 </div>
                             }
                         </div>
+                        
+                        <!-- New Records Tab -->
+                        <div class="tab-pane fade" id="records" role="tabpanel" aria-labelledby="records-tab">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Care Records</h3>
+                                <div>
+                                    <div class="dropdown d-inline-block me-2">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterRecordsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Filter by Status
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="filterRecordsDropdown">
+                                            <li><a class="dropdown-item" href="javascript:void(0);" onclick="filterRecords('all')">All Records</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);" onclick="filterRecords('Accepted')">Accepted</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);" onclick="filterRecords('InProgress')">In Progress</a></li>
+                                            <li><a class="dropdown-item" href="javascript:void(0);" onclick="filterRecords('Finished')">Finished</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown d-inline-block">
+                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="elderFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Filter by Elder
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="elderFilterDropdown">
+                                            <li><a class="dropdown-item" href="javascript:void(0);" onclick="filterRecordsByElder('all')">All Elders</a></li>
+                                            @foreach (var elder in Model.Elders)
+                                            {
+                                                <li><a class="dropdown-item" href="javascript:void(0);" onclick="filterRecordsByElder('@elder.ElderId')">@elder.Fullname</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (Model.ElderRecords != null && Model.ElderRecords.Any())
+                            {
+                                <div class="table-responsive">
+                                    <table class="table table-striped" id="recordsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Elder</th>
+                                                <th>Caregiver</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Service</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var record in Model.ElderRecords)
+                                            {
+                                                string statusBadgeClass = record.Status == "Accepted" ? "bg-info" :
+                                                    record.Status == "InProgress" ? "bg-warning" :
+                                                    record.Status == "Finished" ? "bg-success" : "bg-secondary";
+                                                    
+                                                <tr class="record-row" 
+                                                    data-status="@record.Status" 
+                                                    data-elder="@record.ElderId">
+                                                    <td>@Model.GetElderName(record.ElderId)</td>
+                                                    <td>@Model.GetCaregiverNameByBookingId(record.BookingId)</td>
+                                                    <td>@record.LastUpdated)</td>
+                                                    <td><span class="badge @statusBadgeClass">@record.Status</span></td>
+                                                    <td>@Model.GetServiceNameByBookingId(record.BookingId)</td>
+                                                    <td>
+                                                        <a href="/Customer/Records/Details?id=@record.RecordId" class="btn btn-info btn-sm">View Details</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-info">
+                                    No care records found for your elders.
+                                </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,6 +237,7 @@
 
     <div class="row">
         <div class="col-md-6">
+            <!-- Existing Upcoming Bookings Content -->
             <div class="card">
                 <div class="card-header bg-info text-white">
                     <h4>Upcoming Bookings</h4>
@@ -188,6 +271,7 @@
         </div>
 
         <div class="col-md-6">
+            <!-- Existing Recent Activity Content -->
             <div class="card">
                 <div class="card-header bg-success text-white">
                     <h4>Recent Activity</h4>
@@ -241,5 +325,28 @@
                 })
             })
         });
+        
+        // Record filtering functions
+        function filterRecords(status) {
+            const rows = document.querySelectorAll('.record-row');
+            rows.forEach(row => {
+                if (status === 'all' || row.getAttribute('data-status') === status) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+        
+        function filterRecordsByElder(elderId) {
+            const rows = document.querySelectorAll('.record-row');
+            rows.forEach(row => {
+                if (elderId === 'all' || row.getAttribute('data-elder') === elderId) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
     </script>
 }

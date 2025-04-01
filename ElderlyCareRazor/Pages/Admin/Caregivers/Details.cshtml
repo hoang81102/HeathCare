@@ -1,0 +1,176 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Admin.Caregivers.IndexModel
+@{
+    ViewData["Title"] = "Caregivers Management";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Caregivers Management</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Caregivers</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-user-nurse me-1"></i>
+                    Caregivers List
+                </div>
+                <div>
+                    <a href="/Admin/Caregivers/Create" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus-circle me-1"></i> Add New Caregiver
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model.Caregivers != null && Model.Caregivers.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="caregiversTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Specialty</th>
+                                <th>Experience</th>
+                                <th>Availability</th>
+                                <th>Rating</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var caregiver in Model.Caregivers)
+                            {
+                                <tr>
+                                    <td>@caregiver.CaregiverId</td>
+                                    <td>@caregiver.Account.Fullname</td>
+                                    <td>@(caregiver.Specialty ?? "General Care")</td>
+                                    <td>@caregiver.ExperienceYears years</td>
+                                    <td>@caregiver.Availability</td>
+                                    <td>
+                                        @if (Model.CaregiverRatings.TryGetValue(caregiver.CaregiverId, out double rating))
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <span class="me-2">@rating.ToString("0.0")</span>
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= Math.Floor(rating))
+                                                    {
+                                                        <i class="fas fa-star text-warning"></i>
+                                                    }
+                                                    else if (i - rating < 1 && i - rating > 0)
+                                                    {
+                                                        <i class="fas fa-star-half-alt text-warning"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="far fa-star text-warning"></i>
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span>No ratings</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @{
+                                            string statusBadgeClass = caregiver.Account.AccountStatus == "active" ? "bg-success" : "bg-danger";
+                                        }
+                                        <span class="badge @statusBadgeClass">@caregiver.Account.AccountStatus</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="/Admin/Caregivers/Details?id=@caregiver.CaregiverId" class="btn btn-info btn-sm me-1">
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
+                                            <a href="/Admin/Caregivers/Edit?id=@caregiver.CaregiverId" class="btn btn-primary btn-sm me-1">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-@(caregiver.Account.AccountStatus == "active" ? "danger" : "success") btn-sm"
+                                                    onclick="toggleStatus(@caregiver.CaregiverId, '@caregiver.Account.AccountStatus')">
+                                                <i class="fas fa-@(caregiver.Account.AccountStatus == "active" ? "ban" : "check")"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    No caregivers found in the system.
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-filter me-1"></i>
+            Filter Caregivers
+        </div>
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label for="specialtyFilter" class="form-label">Specialty</label>
+                    <input type="text" id="specialtyFilter" name="specialtyFilter" class="form-control" value="@Model.SpecialtyFilter">
+                </div>
+                <div class="col-md-3">
+                    <label for="experienceFilter" class="form-label">Min. Experience (Years)</label>
+                    <input type="number" id="experienceFilter" name="experienceFilter" class="form-control" value="@Model.ExperienceFilter" min="0">
+                </div>
+                <div class="col-md-3">
+                    <label for="availabilityFilter" class="form-label">Availability</label>
+                    <select id="availabilityFilter" name="availabilityFilter" class="form-select">
+                        <option value="">All</option>
+                        <option value="full-time" selected="@(Model.AvailabilityFilter == "full-time")">Full-time</option>
+                        <option value="part-time" selected="@(Model.AvailabilityFilter == "part-time")">Part-time</option>
+                        <option value="on-call" selected="@(Model.AvailabilityFilter == "on-call")">On-call</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="statusFilter" class="form-label">Status</label>
+                    <select id="statusFilter" name="statusFilter" class="form-select">
+                        <option value="">All</option>
+                        <option value="active" selected="@(Model.StatusFilter == "active")">Active</option>
+                        <option value="inactive" selected="@(Model.StatusFilter == "inactive")">Inactive</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <a href="/Admin/Caregivers" class="btn btn-secondary">Clear Filters</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#caregiversTable').DataTable({
+                responsive: true
+            });
+        });
+
+        function toggleStatus(caregiverId, currentStatus) {
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const confirmMessage = currentStatus === 'active'
+                ? 'Are you sure you want to deactivate this caregiver?'
+                : 'Are you sure you want to activate this caregiver?';
+
+            if (confirm(confirmMessage)) {
+                window.location.href = `/Admin/Caregivers/ToggleStatus?id=${caregiverId}&status=${newStatus}`;
+            }
+        }
+    </script>
+}

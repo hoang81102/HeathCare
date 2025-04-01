@@ -102,15 +102,28 @@
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Service Guidelines</h5>
+                    @if (Model.Record.Status == "InProgress" &&
+                    (string.IsNullOrEmpty(Model.Record.ExerciseGuidelines) ||
+                    string.IsNullOrEmpty(Model.Record.DietGuidelines) ||
+                    string.IsNullOrEmpty(Model.Record.OtherGuidelines)))
+                    {
+                        <div class="alert alert-warning mb-0 py-1">
+                            <i class="fas fa-exclamation-triangle"></i> All guidelines must be completed before clocking out
+                        </div>
+                    }
                 </div>
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <div class="card h-100">
-                                <div class="card-header bg-success text-white">
-                                    Exercise Guidelines
+                                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                                    <span>Exercise Guidelines</span>
+                                    @if (Model.Record.Status == "InProgress" && string.IsNullOrEmpty(Model.Record.ExerciseGuidelines))
+                                    {
+                                        <span class="badge bg-danger">Required</span>
+                                    }
                                 </div>
                                 <div class="card-body">
                                     @if (!string.IsNullOrEmpty(Model.Record.ExerciseGuidelines))
@@ -126,8 +139,12 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card h-100">
-                                <div class="card-header bg-info text-white">
-                                    Diet Guidelines
+                                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                                    <span>Diet Guidelines</span>
+                                    @if (Model.Record.Status == "InProgress" && string.IsNullOrEmpty(Model.Record.DietGuidelines))
+                                    {
+                                        <span class="badge bg-danger">Required</span>
+                                    }
                                 </div>
                                 <div class="card-body">
                                     @if (!string.IsNullOrEmpty(Model.Record.DietGuidelines))
@@ -143,8 +160,12 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card h-100">
-                                <div class="card-header bg-warning text-dark">
-                                    Other Guidelines
+                                <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                                    <span>Other Guidelines</span>
+                                    @if (Model.Record.Status == "InProgress" && string.IsNullOrEmpty(Model.Record.OtherGuidelines))
+                                    {
+                                        <span class="badge bg-danger">Required</span>
+                                    }
                                 </div>
                                 <div class="card-body">
                                     @if (!string.IsNullOrEmpty(Model.Record.OtherGuidelines))
@@ -265,9 +286,21 @@
                     <a asp-page="./Update" asp-route-id="@Model.Record.RecordId" class="btn btn-primary">
                         <i class="fas fa-edit"></i> Update Guidelines
                     </a>
-                    <a asp-page="./Update" asp-route-id="@Model.Record.RecordId" asp-route-action="clockout" class="btn btn-warning">
-                        <i class="fas fa-clock"></i> Clock Out
-                    </a>
+
+                    @if (!string.IsNullOrEmpty(Model.Record.ExerciseGuidelines) &&
+                   !string.IsNullOrEmpty(Model.Record.DietGuidelines) &&
+                   !string.IsNullOrEmpty(Model.Record.OtherGuidelines))
+                    {
+                        <a asp-page="./Update" asp-route-id="@Model.Record.RecordId" asp-route-action="clockout" class="btn btn-warning">
+                            <i class="fas fa-clock"></i> Clock Out
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-warning" disabled title="Complete all guidelines before clocking out">
+                            <i class="fas fa-clock"></i> Clock Out (Complete Guidelines First)
+                        </button>
+                    }
                 }
             </div>
         </div>

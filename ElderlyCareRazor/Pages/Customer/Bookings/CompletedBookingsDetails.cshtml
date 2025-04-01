@@ -1,0 +1,191 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Customer.Bookings.CompletedBookingDetailsModel
+@{
+    ViewData["Title"] = "Completed Booking Details";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Completed Booking Details</h2>
+        <a href="/Customer/Dashboard" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+
+    @if (!ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (Model.Booking == null)
+    {
+        <div class="alert alert-danger">
+            Booking not found or you don't have permission to view it.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <!-- Booking Information Card -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Booking Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <strong>Booking ID:</strong> @Model.Booking.BookingId
+                        </div>
+                        <div class="mb-3">
+                            <strong>Service:</strong> @Model.Service?.ServiceName
+                        </div>
+                        <div class="mb-3">
+                            <strong>Category:</strong> @Model.ServiceCategory?.CategoryName
+                        </div>
+                        <div class="mb-3">
+                            <strong>Elder:</strong> @Model.Elder?.Fullname
+                        </div>
+                        <div class="mb-3">
+                            <strong>Caregiver:</strong> @Model.CaregiverName
+                        </div>
+                        <div class="mb-3">
+                            <strong>Date:</strong> @Model.Booking.BookingDateTime.ToString("MMMM dd, yyyy")
+                        </div>
+                        <div class="mb-3">
+                            <strong>Time:</strong> @Model.Booking.BookingDateTime.ToString("hh:mm tt")
+                        </div>
+                        <div class="mb-3">
+                            <strong>Status:</strong>
+                            <span class="badge bg-success">@Model.Booking.Status</span>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Price:</strong> $@Model.Service?.Price.ToString("0.00")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Care Record Card -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h4 class="mb-0">Care Record</h4>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.Record != null)
+                        {
+                            <div class="mb-3">
+                                <strong>Clock In:</strong>
+                                @(Model.Record.ClockInTime?.ToString("MMM dd, yyyy - hh:mm tt") ?? "Not recorded")
+                            </div>
+                            <div class="mb-3">
+                                <strong>Clock Out:</strong>
+                                @(Model.Record.ClockOutTime?.ToString("MMM dd, yyyy - hh:mm tt") ?? "Not recorded")
+                            </div>
+
+                            @if (!string.IsNullOrWhiteSpace(Model.Record.Description))
+                            {
+                                <div class="mb-3">
+                                    <strong>Description:</strong> @Model.Record.Description
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(Model.Record.ExerciseGuidelines))
+                            {
+                                <div class="mb-3">
+                                    <strong>Exercise Guidelines:</strong>
+                                    <div class="p-2 bg-light rounded">
+                                        @Model.Record.ExerciseGuidelines
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(Model.Record.DietGuidelines))
+                            {
+                                <div class="mb-3">
+                                    <strong>Diet Guidelines:</strong>
+                                    <div class="p-2 bg-light rounded">
+                                        @Model.Record.DietGuidelines
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(Model.Record.OtherGuidelines))
+                            {
+                                <div class="mb-3">
+                                    <strong>Other Guidelines:</strong>
+                                    <div class="p-2 bg-light rounded">
+                                        @Model.Record.OtherGuidelines
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">
+                                No record found for this booking.
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Feedback</h4>
+            </div>
+            <div class="card-body">
+                @if (!Model.HasFeedback)
+                {
+                    <div class="text-center">
+                        <p class="mb-3">How was your experience with this service?</p>
+                        <a href="/Customer/Feedback/Create?bookingId=@Model.Booking.BookingId" class="btn btn-primary">Leave Feedback</a>
+                    </div>
+                }
+                else if (Model.Feedback != null)
+                {
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <strong>Overall Rating:</strong> @Model.Feedback.Rating/5
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Caregiver Professionalism:</strong> @Model.Feedback.CaregiverProfessionalism/5
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Service Quality:</strong> @Model.Feedback.ServiceQuality/5
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>Overall Experience:</strong> @Model.Feedback.OverallExperience/5
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Feedback.Note))
+                    {
+                        <div class="mb-3">
+                            <strong>Comments:</strong>
+                            <div class="p-2 bg-light rounded">
+                                @Model.Feedback.Note
+                            </div>
+                        </div>
+                    }
+
+                    <div class="text-muted">
+                        Feedback submitted on: @Model.Feedback.FeedbackDate?.ToString("MMMM dd, yyyy")
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">Feedback was provided but details could not be loaded.</div>
+                }
+            </div>
+        </div>
+    }
+</div>
