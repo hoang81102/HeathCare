@@ -18,14 +18,15 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
         private readonly IElderService _elderService;
         private readonly ICaregiverService _caregiverService;
         private readonly IFeedbackService _feedbackService;
-
+        private readonly IRecordService _recordService;
         public IndexModel(
             IBookingService bookingService,
             IBookingTimeSlotService bookingTimeSlotService,
             IServiceService serviceService,
             IElderService elderService,
             ICaregiverService caregiverService,
-            IFeedbackService feedbackService)
+            IFeedbackService feedbackService,
+            IRecordService recordService)
         {
             _bookingService = bookingService;
             _bookingTimeSlotService = bookingTimeSlotService;
@@ -33,6 +34,7 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
             _elderService = elderService;
             _caregiverService = caregiverService;
             _feedbackService = feedbackService;
+            _recordService = recordService;
         }
 
         public List<Booking> AllBookings { get; set; }
@@ -347,5 +349,19 @@ namespace ElderlyCareRazor.Pages.Customer.Bookings
 
             return true;
         }
+        public bool HasRecord(int bookingId)
+        {
+            // Check if a record exists for this booking
+            try
+            {
+                var record = _recordService.GetRecordByBookingId(bookingId);
+                return record != null;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

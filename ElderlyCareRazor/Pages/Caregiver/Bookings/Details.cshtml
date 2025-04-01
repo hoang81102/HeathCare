@@ -214,13 +214,6 @@
                 </a>
             }
 
-            @if (Model.Booking.Status == "accepted")
-            {
-                <a asp-page="../Records/Update" asp-route-bookingId="@Model.Booking.BookingId" class="btn btn-info">
-                    <i class="bi bi-clipboard"></i> Manage Record
-                </a>
-            }
-
             @if (Model.Record != null)
             {
                 <a asp-page="../Records/Details" asp-route-id="@Model.Record.RecordId" class="btn btn-primary">
