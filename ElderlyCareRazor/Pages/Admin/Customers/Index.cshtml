@@ -1,0 +1,165 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Admin.Customers.IndexModel
+@{
+    ViewData["Title"] = "Customers Management";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Customers Management</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Customers</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-users me-1"></i>
+                    Customers List
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model.Customers != null && Model.Customers.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="customersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Elders</th>
+                                <th>Bookings</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var customer in Model.Customers)
+                            {
+                                <tr>
+                                    <td>@customer.AccountId</td>
+                                    <td>@customer.Fullname</td>
+                                    <td>@(customer.Email ?? "N/A")</td>
+                                    <td>@(customer.Phone ?? "N/A")</td>
+                                    <td>
+                                        @if (Model.CustomerElders.TryGetValue(customer.AccountId, out int elderCount))
+                                        {
+                                            <span class="badge bg-info">@elderCount</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">0</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (Model.CustomerBookings.TryGetValue(customer.AccountId, out int bookingCount))
+                                        {
+                                            <span class="badge bg-primary">@bookingCount</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">0</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @{
+                                            string statusBadgeClass = customer.AccountStatus == "active" ? "bg-success" : "bg-danger";
+                                        }
+                                        <span class="badge @statusBadgeClass">@customer.AccountStatus</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="/Admin/Customers/Edit?id=@customer.AccountId" class="btn btn-primary btn-sm me-1">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </a>
+                                            <button type="button" class="btn btn-@(customer.AccountStatus == "active" ? "danger" : "success") btn-sm"
+                                                    onclick="toggleStatus(@customer.AccountId, '@customer.AccountStatus')">
+                                                <i class="fas fa-@(customer.AccountStatus == "active" ? "ban" : "check")"></i>
+                                                @(customer.AccountStatus == "active" ? "Deactivate" : "Activate")
+                                            </button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    No customers found in the system.
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-filter me-1"></i>
+            Filter Customers
+        </div>
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label for="nameFilter" class="form-label">Name</label>
+                    <input type="text" id="nameFilter" name="nameFilter" class="form-control" value="@Model.NameFilter">
+                </div>
+                <div class="col-md-3">
+                    <label for="emailFilter" class="form-label">Email</label>
+                    <input type="text" id="emailFilter" name="emailFilter" class="form-control" value="@Model.EmailFilter">
+                </div>
+                <div class="col-md-3">
+                    <label for="phoneFilter" class="form-label">Phone</label>
+                    <input type="text" id="phoneFilter" name="phoneFilter" class="form-control" value="@Model.PhoneFilter">
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <a href="/Admin/Customers" class="btn btn-secondary">Clear Filters</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#customersTable').DataTable({
+                responsive: true
+            });
+        });
+
+        function toggleStatus(accountId, currentStatus) {
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const confirmMessage = currentStatus === 'active' 
+                ? 'Are you sure you want to deactivate this customer account?' 
+                : 'Are you sure you want to activate this customer account?';
+                
+            if (confirm(confirmMessage)) {
+                window.location.href = `/Admin/Customers/ToggleStatus?id=${accountId}&status=${newStatus}`;
+            }
+        }
+    </script>
+}

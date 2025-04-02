@@ -1,0 +1,78 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Customer.Elders.IndexModel
+@{
+    ViewData["Title"] = "My Elders";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>My Elders</h2>
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add New Elder
+        </a>
+    </div>
+
+    @if (!Model.Elders.Any())
+    {
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">No elders found!</h4>
+            <p>You haven't added any elders to your account yet. Click the "Add New Elder" button to get started.</p>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var elder in Model.Elders)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex justify-content-between">
+                            <h5 class="mb-0">@elder.Fullname</h5>
+                            <span class="badge bg-primary">ID: @elder.ElderId</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <strong><i class="bi bi-calendar-date"></i> Date of Birth:</strong>
+                                <span>@(elder.Birthdate.HasValue ? elder.Birthdate.Value.ToString("MMM dd, yyyy") : "Not specified")</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong><i class="bi bi-telephone"></i> Phone:</strong>
+                                <span>@(!string.IsNullOrEmpty(elder.Phone) ? elder.Phone : "Not specified")</span>
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(elder.Address))
+                            {
+                                <div class="mb-3">
+                                    <strong><i class="bi bi-house"></i> Address:</strong>
+                                    <p class="text-muted mb-0">@elder.Address</p>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(elder.MedicalNote))
+                            {
+                                <div class="mb-3">
+                                    <strong><i class="bi bi-clipboard2-pulse"></i> Medical Notes:</strong>
+                                    <p class="text-muted mb-0">@(elder.MedicalNote.Length > 100 ? elder.MedicalNote.Substring(0, 100) + "..." : elder.MedicalNote)</p>
+                                </div>
+                            }
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group w-100" role="group">
+                                <a asp-page="Details" asp-route-id="@elder.ElderId" class="btn btn-info">
+                                    <i class="bi bi-eye"></i> Details
+                                </a>
+                                <a asp-page="Edit" asp-route-id="@elder.ElderId" class="btn btn-primary">
+                                    <i class="bi bi-pencil"></i> Edit
+                                </a>
+                                <a asp-page="/Customer/MedicalRecords/Index" asp-route-elderId="@elder.ElderId" class="btn btn-secondary">
+                                    <i class="bi bi-journal-medical"></i> Medical Records
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

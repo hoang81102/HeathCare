@@ -1,0 +1,156 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Caregiver.Records.UpdateModel
+@{
+    ViewData["Title"] = "Update Record";
+    var isInProgress = Model.Record.Status == "InProgress";
+
+    string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Accepted" => "bg-secondary",
+            "InProgress" => "bg-primary",
+            "Finished" => "bg-success",
+            _ => "bg-secondary"
+        };
+    }
+}
+
+<div class="container-fluid">
+    <h2>Update Service Record</h2>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-info">@Model.StatusMessage</div>
+    }
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Record #@Model.Record.RecordId</h5>
+                    <span class="badge rounded-pill @GetStatusBadgeClass(Model.Record.Status)">@Model.Record.Status</span>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h6>Elder Information</h6>
+                            <p><strong>Name:</strong> @Model.Elder.Fullname</p>
+                            <p><strong>Medical Notes:</strong> @(string.IsNullOrEmpty(Model.Elder.MedicalNote) ? "N/A" : Model.Elder.MedicalNote)</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Service Information</h6>
+                            <p><strong>Service:</strong> @(Model.Booking?.Service?.ServiceName ?? "N/A")</p>
+                            <p><strong>Date:</strong> @(Model.Booking?.BookingDateTime.ToString("MM/dd/yyyy") ?? "N/A")</p>
+                            <p><strong>Status:</strong> @Model.Record.Status</p>
+                            @if (Model.Record.ClockInTime.HasValue)
+                            {
+                                <p><strong>Clock In Time:</strong> @(Model.Record.ClockInTime.Value.ToString("g"))</p>
+                            }
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Record.RecordId" />
+
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label asp-for="Record.ExerciseGuidelines" class="form-label">Exercise Guidelines <span class="text-danger">*</span></label>
+                            <textarea asp-for="Record.ExerciseGuidelines" class="form-control" rows="4" placeholder="Enter exercise guidelines..." required></textarea>
+                            <span asp-validation-for="Record.ExerciseGuidelines" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Record.DietGuidelines" class="form-label">Diet Guidelines <span class="text-danger">*</span></label>
+                            <textarea asp-for="Record.DietGuidelines" class="form-control" rows="4" placeholder="Enter diet guidelines..." required></textarea>
+                            <span asp-validation-for="Record.DietGuidelines" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Record.OtherGuidelines" class="form-label">Other Guidelines <span class="text-danger">*</span></label>
+                            <textarea asp-for="Record.OtherGuidelines" class="form-control" rows="4" placeholder="Enter other guidelines or notes..." required></textarea>
+                            <span asp-validation-for="Record.OtherGuidelines" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a asp-page="./Details" asp-route-id="@Model.Record.RecordId" class="btn btn-secondary">Cancel</a>
+
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Update Guidelines
+                            </button>
+
+                            @if (Model.Record.Status == "InProgress")
+                            {
+                                <button type="submit" name="action" value="clockout" class="btn btn-warning">
+                                    <i class="fas fa-clock"></i> Complete Service & Clock Out
+                                </button>
+                            }
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (isInProgress)
+    {
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card border-warning">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">Completing Service Instructions</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2"><strong>Important:</strong> To complete this service and clock out, you must:</p>
+                        <ol>
+                            <li>Fill out <strong>all three guideline sections</strong> (Exercise, Diet, and Other)</li>
+                            <li>Click the "Complete Service & Clock Out" button</li>
+                        </ol>
+                        <p class="mb-0">This will:</p>
+                        <ul>
+                            <li>Mark this service as completed</li>
+                            <li>Record the exact time of service completion</li>
+                            <li>Make the service eligible for customer feedback</li>
+                            <li>Update the booking status to "completed"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Add confirmation for clock out action
+            $('button[name="action"][value="clockout"]').on('click', function (e) {
+                // Check if all required fields are filled
+                var exerciseGuidelines = $('#Record_ExerciseGuidelines').val().trim();
+                var dietGuidelines = $('#Record_DietGuidelines').val().trim();
+                var otherGuidelines = $('#Record_OtherGuidelines').val().trim();
+
+                if (!exerciseGuidelines || !dietGuidelines || !otherGuidelines) {
+                    e.preventDefault();
+                    alert('You must fill out all guideline sections (Exercise, Diet, and Other) before completing the service.');
+                    return false;
+                }
+
+                if (!confirm('Are you sure you want to complete this service and clock out? This will mark the service as completed and update the booking status.')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+}

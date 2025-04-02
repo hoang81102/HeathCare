@@ -1,0 +1,225 @@
+﻿@page "{id:int}"
+@model ElderlyCareRazor.Pages.Caregiver.Bookings.DetailsModel
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<div class="container my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Booking Details</h2>
+        <a asp-page="./Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Bookings
+        </a>
+    </div>
+
+    @if (ViewData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @ViewData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (Model.Booking == null)
+    {
+        <div class="alert alert-danger">
+            <p>Booking not found.</p>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">Booking Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Booking ID:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">@Model.Booking.BookingId</p>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Status:</label>
+                            <div class="col-sm-8">
+                                @{
+                                    var statusClass = Model.Booking.Status switch
+                                    {
+                                        "pending" => "bg-warning text-dark",
+                                        "accepted" => "bg-primary text-white",
+                                        "rejected" => "bg-danger text-white",
+                                        "in-progress" => "bg-info text-white",
+                                        "completed" => "bg-success text-white",
+                                        "canceled" => "bg-secondary text-white",
+                                        _ => "bg-light text-dark"
+                                    };
+                                }
+                                <span class="badge @statusClass">
+                                    @(char.ToUpper(Model.Booking.Status[0]) + Model.Booking.Status.Substring(1))
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Created On:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">@Model.Booking.BookingDateTime.ToString("MM/dd/yyyy hh:mm tt")</p>
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Booking.RejectionReason))
+                        {
+                            <div class="mb-3 row">
+                                <label class="col-sm-4 col-form-label fw-bold">Rejection Reason:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-plaintext">@Model.Booking.RejectionReason</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">Service Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Service:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">@Model.Booking.Service.ServiceName</p>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Price:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">$@Model.Booking.Service.Price.ToString("F2")</p>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Description:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">@Model.Booking.Service.Description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">Schedule Information</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.TimeSlots.Any())
+                        {
+                            <ul class="list-group list-group-flush">
+                                @foreach (var slot in Model.TimeSlots)
+                                {
+                                    <li class="list-group-item">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold">@slot.BookingDate.ToString("MM/dd/yyyy")</span>
+                                                <span>@slot.StartTime.ToString("hh\\:mm tt") - @slot.EndTime.ToString("hh\\:mm tt")</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No time slots found for this booking.</p>
+                        }
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">Customer Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Customer Name:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">@Model.Booking.Account.Fullname</p>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Email:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">@Model.Booking.Account.Email</p>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-4 col-form-label fw-bold">Phone:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-plaintext">@Model.Booking.Account.Phone</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="card-title mb-0">Elder Information</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.Booking.Elder != null)
+                        {
+                            <div class="mb-3 row">
+                                <label class="col-sm-4 col-form-label fw-bold">Elder Name:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-plaintext">@Model.Booking.Elder.Fullname</p>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-4 col-form-label fw-bold">Birth Date:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-plaintext">@(Model.Booking.Elder.Birthdate?.ToString("MM/dd/yyyy") ?? "N/A")</p>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-4 col-form-label fw-bold">Address:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-plaintext">@(Model.Booking.Elder.Address ?? "N/A")</p>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-4 col-form-label fw-bold">Medical Notes:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-plaintext">@(Model.Booking.Elder.MedicalNote ?? "N/A")</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="text-muted">No elder information available.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mb-4">
+            <a asp-page="./Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Bookings
+            </a>
+
+            @if (Model.Booking.Status == "pending")
+            {
+                <a asp-page="./ManageStatus" asp-route-id="@Model.Booking.BookingId" class="btn btn-success">
+                    <i class="bi bi-check-circle"></i> Review Booking
+                </a>
+            }
+
+            @if (Model.Record != null)
+            {
+                <a asp-page="../Records/Details" asp-route-id="@Model.Record.RecordId" class="btn btn-primary">
+                    <i class="bi bi-file-text"></i> View Record
+                </a>
+            }
+        </div>
+    }
+</div>

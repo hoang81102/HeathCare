@@ -1,0 +1,145 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Caregiver.Availability.ConflictsModel
+@{
+    ViewData["Title"] = "Availability Conflicts";
+}
+
+<h1>Availability Conflicts</h1>
+
+<div class="alert alert-info mb-4">
+    <i class="fas fa-info-circle"></i> This page helps you identify and resolve any conflicts in your availability schedule.
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Overlapping Time Slots</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.OverlappingSlots != null && Model.OverlappingSlots.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Conflicting Time Slots</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var group in Model.OverlappingSlots)
+                                {
+                                    <tr>
+                                        <td>@Model.GetDayName(group.Key)</td>
+                                        <td>
+                                            <ul class="list-group">
+                                                @foreach (var slot in group.Value)
+                                                {
+                                                    <li class="list-group-item p-2">
+                                                        <span class="badge bg-primary">ID: @slot.AvailabilityId</span>
+                                                        @slot.StartTime.ToString("h:mm tt") - @slot.EndTime.ToString("h:mm tt")
+                                                        @if (slot.IsAvailable != true)
+                                                        {
+                                                            <span class="badge bg-danger ms-2">Unavailable</span>
+                                                        }
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group-vertical w-100">
+                                                @foreach (var slot in group.Value)
+                                                {
+                                                    <a asp-page="Edit" asp-route-id="@slot.AvailabilityId"
+                                                       class="btn btn-sm btn-outline-primary mb-1">
+                                                        Edit ID: @slot.AvailabilityId
+                                                    </a>
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i> No overlapping time slots found in your schedule.
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Upcoming Bookings</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.UpcomingBookings != null && Model.UpcomingBookings.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Service</th>
+                                    <th>Customer</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var booking in Model.UpcomingBookings)
+                                {
+                                    <tr>
+                                        <td>@booking.BookingDateTime.ToString("MMM dd, yyyy")</td>
+                                        <td>
+                                            @if (booking.BookingTimeSlots != null && booking.BookingTimeSlots.Any())
+                                            {
+                                                var slot = booking.BookingTimeSlots.First();
+                                                @($"{slot.StartTime.ToString("h:mm tt")} - {slot.EndTime.ToString("h:mm tt")}")
+                                            }
+                                            else
+                                            {
+                                                @("Time not specified")
+                                            }
+                                        </td>
+                                        <td>@booking.Service?.ServiceName</td>
+                                        <td>@booking.Account?.Fullname</td>
+                                        <td>
+                                            <span class="badge @Model.GetStatusBadgeClass(booking.Status)">
+                                                @booking.Status
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i> No upcoming bookings found.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-page="Index" class="btn btn-primary">Back to Availability Management</a>
+</div>
+
+@section Styles {
+    <style>
+        .list-group-item {
+            border-left: 3px solid #007bff;
+        }
+    </style>
+}

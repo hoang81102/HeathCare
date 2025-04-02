@@ -1,0 +1,313 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Customer.Bookings.CreateModel
+@{
+    ViewData["Title"] = "Book a Service";
+}
+
+<div class="container mt-4">
+    <h2>Book a Service</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <form method="post" id="bookingForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <input type="hidden" asp-for="Booking.AccountId" />
+                        <input type="hidden" asp-for="Booking.ServiceId" />
+
+                        <!-- Step 1: Service Information -->
+                        <div id="step1" class="booking-step">
+                            <h4 class="mb-3">Service Information</h4>
+
+                            @if (Model.Service != null)
+                            {
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Model.Service.ServiceName</h5>
+                                        <p class="card-text">@Model.Service.Description</p>
+                                        <p class="card-text"><strong>Price:</strong> $@Model.Service.Price</p>
+                                        <p class="card-text"><strong>Category:</strong> @Model.ServiceCategory?.CategoryName</p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-danger">
+                                    Service information not found. Please go back and select a service.
+                                </div>
+                            }
+
+                            <div class="mb-3">
+                                <label asp-for="Booking.ElderId" class="form-label">Elder</label>
+                                <select asp-for="Booking.ElderId" class="form-select" required>
+                                    <option value="">-- Select Elder --</option>
+                                    @foreach (var elder in Model.Elders)
+                                    {
+                                        <option value="@elder.ElderId">@elder.Fullname</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="Booking.ElderId" class="text-danger"></span>
+                                <div class="form-text">
+                                    <a href="/Customer/Elders/Create" target="_blank">Add a new elder</a>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-end">
+                                <button type="button" id="step1Next" class="btn btn-primary next-step">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Schedule -->
+                        <div id="step2" class="booking-step d-none">
+                            <h4 class="mb-3">Schedule</h4>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="BookingDate" class="form-label">Date</label>
+                                    <input type="date" asp-for="BookingDate" class="form-control" required min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                                    <span asp-validation-for="BookingDate" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="StartTime" class="form-label">Start Time</label>
+                                    <input type="time" asp-for="StartTime" class="form-control time-input" required />
+                                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label asp-for="EndTime" class="form-label">End Time</label>
+                                    <input type="time" asp-for="EndTime" class="form-control time-input" required />
+                                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" id="step2Prev" class="btn btn-secondary prev-step">Previous</button>
+                                <button type="button" id="findCaregiversBtn" class="btn btn-primary">Find Available Caregivers</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Caregiver Selection -->
+                        <div id="step3" class="booking-step d-none">
+                            <h4 class="mb-3">Select Caregiver</h4>
+
+                            <div id="caregiverLoading" class="text-center d-none">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2">Searching for available caregivers...</p>
+                            </div>
+
+                            <div id="caregiverList">
+                                @if (Model.AvailableCaregivers != null && Model.AvailableCaregivers.Any())
+                                {
+                                    <div class="mb-3">
+                                        <label asp-for="Booking.CaregiverId" class="form-label">Caregiver</label>
+                                        <select asp-for="Booking.CaregiverId" class="form-select" required>
+                                            <option value="">-- Select Caregiver --</option>
+                                            @foreach (var caregiver in Model.AvailableCaregivers)
+                                            {
+                                                <option value="@caregiver.CaregiverId">@caregiver.Fullname</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="Booking.CaregiverId" class="text-danger"></span>
+                                    </div>
+                                }
+                                else if (Model.SearchPerformed)
+                                {
+                                    <div class="alert alert-info">
+                                        No caregivers available for the selected time. Please try a different date or time.
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="button" id="step3Prev" class="btn btn-secondary prev-step">Previous</button>
+                                <button type="submit" id="submitBooking" class="btn btn-success">Complete Booking</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Booking Summary</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="summaryService">
+                                <h6>Service:</h6>
+                                <p>@(Model.Service?.ServiceName ?? "Not selected")</p>
+                            </div>
+                            <div id="summaryElder">
+                                <h6>Elder:</h6>
+                                <p id="elderNameSummary">Not selected</p>
+                            </div>
+                            <div id="summaryDateTime">
+                                <h6>Date & Time:</h6>
+                                <p id="dateTimeSummary">Not scheduled</p>
+                            </div>
+                            <div id="summaryCaregiver">
+                                <h6>Caregiver:</h6>
+                                <p id="caregiverNameSummary">Not selected</p>
+                            </div>
+                            <div class="mt-3 pt-3 border-top">
+                                <h6>Total Price:</h6>
+                                <h4>$@(Model.Service?.Price.ToString("0.00") ?? "0.00")</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Navigation between steps
+            $('.next-step').click(function () {
+                let currentStep = $(this).closest('.booking-step');
+                let nextStep = currentStep.next('.booking-step');
+
+                // Validate current step before proceeding
+                let isValid = true;
+                currentStep.find('select[required], input[required]').each(function () {
+                    if ($(this).val() === '' || $(this).val() === null) {
+                        $(this).addClass('is-invalid');
+                        isValid = false;
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+
+                if (!isValid) return;
+
+                currentStep.addClass('d-none');
+                nextStep.removeClass('d-none');
+
+                // Update summary
+                updateSummary();
+            });
+
+            $('.prev-step').click(function () {
+                let currentStep = $(this).closest('.booking-step');
+                let prevStep = currentStep.prev('.booking-step');
+
+                currentStep.addClass('d-none');
+                prevStep.removeClass('d-none');
+            });
+
+            // Update summary when selections change
+            $('#Booking_ElderId').change(function () {
+                let elderName = $("#Booking_ElderId option:selected").text();
+                $('#elderNameSummary').text(elderName !== '-- Select Elder --' ? elderName : 'Not selected');
+            });
+
+            $('#Booking_CaregiverId').change(function () {
+                let caregiverName = $("#Booking_CaregiverId option:selected").text();
+                $('#caregiverNameSummary').text(caregiverName !== '-- Select Caregiver --' ? caregiverName : 'Not selected');
+            });
+
+            $('.time-input, #BookingDate').change(function () {
+                updateDateTimeSummary();
+            });
+
+            function updateDateTimeSummary() {
+                let date = $('#BookingDate').val();
+                let startTime = $('#StartTime').val();
+                let endTime = $('#EndTime').val();
+
+                if (date && startTime && endTime) {
+                    $('#dateTimeSummary').text(`${date} from ${startTime} to ${endTime}`);
+                } else {
+                    $('#dateTimeSummary').text('Not scheduled');
+                }
+            }
+
+            function updateSummary() {
+                $('#Booking_ElderId').trigger('change');
+                $('#Booking_CaregiverId').trigger('change');
+                updateDateTimeSummary();
+            }
+
+            // Find caregivers button
+            $('#findCaregiversBtn').click(function () {
+                let date = $('#BookingDate').val();
+                let startTime = $('#StartTime').val();
+                let endTime = $('#EndTime').val();
+                let elderId = $('#Booking_ElderId').val();
+
+                // Validate inputs
+                if (!date || !startTime || !endTime || !elderId) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Validate that start time is before end time
+                if (startTime >= endTime) {
+                    alert('Start time must be before end time.');
+                    return;
+                }
+
+                // Show loading
+                $('#caregiverLoading').removeClass('d-none');
+                $('#caregiverList').addClass('d-none');
+
+                // Submit form to get available caregivers
+                $.ajax({
+                    url: '?handler=AvailableCaregivers',
+                    data: {
+                        bookingDate: date,
+                        startTime: startTime,
+                        endTime: endTime,
+                        elderId: elderId
+                    },
+                    type: 'GET',
+                    success: function (response) {
+                        $('#caregiverLoading').addClass('d-none');
+                        $('#caregiverList').html(response).removeClass('d-none');
+
+                        // Continue to next step
+                        $('#step2').addClass('d-none');
+                        $('#step3').removeClass('d-none');
+
+                        // Bind change event for dynamic caregiver dropdown
+                        $('#Booking_CaregiverId').change(function () {
+                            let caregiverName = $("#Booking_CaregiverId option:selected").text();
+                            $('#caregiverNameSummary').text(caregiverName !== '-- Select Caregiver --' ? caregiverName : 'Not selected');
+                        });
+                    },
+                    error: function () {
+                        $('#caregiverLoading').addClass('d-none');
+                        $('#caregiverList').html('<div class="alert alert-danger">Error loading caregivers. Please try again.</div>').removeClass('d-none');
+                    }
+                });
+            });
+
+            // Form validation before submit
+            $('#bookingForm').submit(function (e) {
+                let isValid = true;
+
+                // Check if caregiver is selected
+                if (!$('#Booking_CaregiverId').val()) {
+                    $('#Booking_CaregiverId').addClass('is-invalid');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Please select a caregiver to complete the booking.');
+                }
+            });
+        });
+    </script>
+}

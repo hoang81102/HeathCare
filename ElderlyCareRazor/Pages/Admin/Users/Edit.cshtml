@@ -1,0 +1,95 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Admin.Users.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="mb-4">Edit Account</h1>
+
+<div class="card shadow-sm p-4">
+    <h4 class="mb-3">Account Information</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="AccountViewModel.AccountId" />
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.Username" class="form-label"></label>
+                    <input asp-for="AccountViewModel.Username" class="form-control" />
+                    <span asp-validation-for="AccountViewModel.Username" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label>Password</label>
+                    <input type="password" asp-for="AccountViewModel.Password" class="form-control" />
+                    <small class="text-muted">Leave empty if you do not want to change the password.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.Phone" class="form-label"></label>
+                    <input asp-for="AccountViewModel.Phone" class="form-control" />
+                    <span asp-validation-for="AccountViewModel.Phone" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.Email" class="form-label"></label>
+                    <input asp-for="AccountViewModel.Email" type="email" class="form-control" />
+                    <span asp-validation-for="AccountViewModel.Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.Fullname" class="form-label"></label>
+                    <input asp-for="AccountViewModel.Fullname" class="form-control" />
+                    <span asp-validation-for="AccountViewModel.Fullname" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.Address" class="form-label"></label>
+                    <input asp-for="AccountViewModel.Address" class="form-control" />
+                    <span asp-validation-for="AccountViewModel.Address" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.Birthdate" class="form-label"></label>
+                    <input asp-for="AccountViewModel.Birthdate" type="date" class="form-control" />
+                    <span asp-validation-for="AccountViewModel.Birthdate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.Hobby" class="form-label"></label>
+                    <input asp-for="AccountViewModel.Hobby" class="form-control" />
+                    <span asp-validation-for="AccountViewModel.Hobby" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.AccountStatus" class="form-label fw-bold"></label>
+                    <select asp-for="AccountViewModel.AccountStatus" class="form-control">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                    <span asp-validation-for="AccountViewModel.AccountStatus" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AccountViewModel.RoleId" class="form-label"></label>
+                    <select asp-for="AccountViewModel.RoleId" class="form-select" asp-items="ViewBag.RoleId"></select>
+                    <span asp-validation-for="AccountViewModel.RoleId" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

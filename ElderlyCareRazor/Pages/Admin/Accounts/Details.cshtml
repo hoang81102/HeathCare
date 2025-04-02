@@ -1,0 +1,135 @@
+﻿@page "{id:int}"
+@model ElderlyCareRazor.Pages.Admin.Accounts.DetailsModel
+@{
+    ViewData["Title"] = "Account Details";
+}
+
+<div class="container mt-4">
+    <h1>Account Details</h1>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Basic Information</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th>Username:</th>
+                            <td>@Model.Account.Username</td>
+                        </tr>
+                        <tr>
+                            <th>Full Name:</th>
+                            <td>@Model.Account.Fullname</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>@Model.Account.Email</td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td>@Model.Account.Phone</td>
+                        </tr>
+                        <tr>
+                            <th>Role:</th>
+                            <td>@Model.Role.RoleName</td>
+                        </tr>
+                        <tr>
+                            <th>Status:</th>
+                            <td>
+                                <span class="badge @(Model.Account.AccountStatus == "active" ? "bg-success" : "bg-danger")">
+                                    @Model.Account.AccountStatus
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Personal Information</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tr>
+                            <th>Birth Date:</th>
+                            <td>@(Model.Account.Birthdate?.ToString("yyyy-MM-dd") ?? "Not specified")</td>
+                        </tr>
+                        <tr>
+                            <th>Address:</th>
+                            <td>@(Model.Account.Address ?? "Not specified")</td>
+                        </tr>
+                        <tr>
+                            <th>Hobbies:</th>
+                            <td>@(Model.Account.Hobby ?? "Not specified")</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.Caregiver != null)
+        {
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Caregiver Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <th>Caregiver ID:</th>
+                                        <td>@Model.Caregiver.CaregiverId</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Experience:</th>
+                                        <td>@Model.Caregiver.ExperienceYears years</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Availability:</th>
+                                        <td>
+                                            @{
+                                                string formattedAvailability = Model.Caregiver.Availability switch
+                                                {
+                                                    "full-time" => "Full Time",
+                                                    "part-time" => "Part Time",
+                                                    "on-call" => "On Call",
+                                                    _ => Model.Caregiver.Availability
+                                                };
+                                            }
+                                            @formattedAvailability
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <th>Specialty:</th>
+                                        <td>@(Model.Caregiver.Specialty ?? "Not specified")</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Certification:</th>
+                                        <td>@(Model.Caregiver.Certification ?? "Not specified")</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="mt-3">
+        <a asp-page="./Edit" asp-route-id="@Model.Account.AccountId" class="btn btn-primary">Edit</a>
+        <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

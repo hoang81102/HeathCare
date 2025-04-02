@@ -1,0 +1,314 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Admin.Customers.DetailsModel
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Customer Details</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Customers">Customers</a></li>
+        <li class="breadcrumb-item active">Details</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (Model.Customer != null)
+    {
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Profile Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <div class="profile-icon mb-3">
+                                <i class="fas fa-user fa-5x text-primary"></i>
+                            </div>
+                            <h4>@Model.Customer.Fullname</h4>
+                            <span class="badge @(Model.Customer.AccountStatus == "active" ? "bg-success" : "bg-danger")">
+                                @Model.Customer.AccountStatus
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="text-muted mb-1">Username</h6>
+                            <p>@Model.Customer.Username</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="text-muted mb-1">Email</h6>
+                            <p>@(Model.Customer.Email ?? "Not provided")</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="text-muted mb-1">Phone</h6>
+                            <p>@(Model.Customer.Phone ?? "Not provided")</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="text-muted mb-1">Address</h6>
+                            <p>@(Model.Customer.Address ?? "Not provided")</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="text-muted mb-1">Birth Date</h6>
+                            <p>@(Model.Customer.Birthdate?.ToString("MM/dd/yyyy") ?? "Not provided")</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6 class="text-muted mb-1">Registered</h6>
+                            <p>@Model.Customer.AccountId.ToString() days ago</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-grid gap-2">
+                            <a href="/Admin/Customers/Edit?id=@Model.Customer.AccountId" class="btn btn-primary">
+                                <i class="fas fa-edit me-1"></i> Edit Profile
+                            </a>
+                            <button class="btn btn-@(Model.Customer.AccountStatus == "active" ? "danger" : "success")"
+                                    onclick="toggleStatus(@Model.Customer.AccountId, '@Model.Customer.AccountStatus')">
+                                <i class="fas fa-@(Model.Customer.AccountStatus == "active" ? "ban" : "check") me-1"></i>
+                                @(Model.Customer.AccountStatus == "active" ? "Deactivate" : "Activate") Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Registered Elders</h5>
+                        <a href="/Admin/Elders/Create?accountId=@Model.Customer.AccountId" class="btn btn-sm btn-primary">
+                            <i class="fas fa-plus-circle me-1"></i> Add Elder
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.Elders != null && Model.Elders.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Birth Date</th>
+                                            <th>Medical Notes</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var elder in Model.Elders)
+                                        {
+                                            <tr>
+                                                <td>@elder.ElderId</td>
+                                                <td>@elder.Fullname</td>
+                                                <td>@(elder.Birthdate?.ToString("MM/dd/yyyy") ?? "Not provided")</td>
+                                                <td>
+                                                    @(string.IsNullOrEmpty(elder.MedicalNote) ? "No notes" :
+                                                        (elder.MedicalNote.Length > 50 ? elder.MedicalNote.Substring(0, 47) + "..." : elder.MedicalNote))
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <a href="/Admin/Elders/Details?id=@elder.ElderId" class="btn btn-info btn-sm me-1">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </a>
+                                                        <a href="/Admin/Elders/Edit?id=@elder.ElderId" class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                No elders registered for this customer.
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Recent Bookings</h5>
+                        <a href="/Admin/Bookings?accountId=@Model.Customer.AccountId" class="btn btn-sm btn-primary">View All</a>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.RecentBookings != null && Model.RecentBookings.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Elder</th>
+                                            <th>Service</th>
+                                            <th>Caregiver</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var booking in Model.RecentBookings)
+                                        {
+                                            <tr>
+                                                <td>@booking.BookingId</td>
+                                                <td>@booking.Elder?.Fullname</td>
+                                                <td>@booking.Service?.ServiceName</td>
+                                                <td>@booking.Caregiver?.Account?.Fullname</td>
+                                                <td>@booking.BookingDateTime.ToString("MM/dd/yyyy")</td>
+                                                <td>
+                                                    @{
+                                                        string badgeClass = booking.Status switch
+                                                        {
+                                                            "pending" => "bg-primary",
+                                                            "accepted" => "bg-success",
+                                                            "in-progress" => "bg-info",
+                                                            "completed" => "bg-secondary",
+                                                            "rejected" => "bg-danger",
+                                                            "canceled" => "bg-dark",
+                                                            _ => "bg-light text-dark"
+                                                        };
+                                                    }
+                                                    <span class="badge @badgeClass">@booking.Status</span>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                No bookings found for this customer.
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Feedback History</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.Feedbacks != null && Model.Feedbacks.Any())
+                        {
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking ID</th>
+                                            <th>Rating</th>
+                                            <th>Caregiver</th>
+                                            <th>Service</th>
+                                            <th>Date</th>
+                                            <th>Comment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var feedback in Model.Feedbacks)
+                                        {
+                                            <tr>
+                                                <td>@feedback.BookingId</td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <span class="me-1">@feedback.Rating</span>
+                                                        @for (int i = 1; i <= 5; i++)
+                                                        {
+                                                            if (i <= feedback.Rating)
+                                                            {
+                                                                <i class="fas fa-star text-warning"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="far fa-star text-warning"></i>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </td>
+                                                <td>@Model.FeedbackCaregivers.GetValueOrDefault(feedback.BookingId, "Unknown")</td>
+                                                <td>@Model.FeedbackServices.GetValueOrDefault(feedback.BookingId, "Unknown")</td>
+                                                <td>@feedback.FeedbackDate.?ToString("MM/dd/yyyy")</td>
+                                                <td>
+                                                    @(string.IsNullOrEmpty(feedback.Note) ? "No comment" :
+                                                        (feedback.Note.Length > 40 ? feedback.Note.Substring(0, 37) + "..." : feedback.Note))
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                No feedback history found for this customer.
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <h4 class="alert-heading">Customer Not Found</h4>
+            <p>The customer you are looking for does not exist or has been removed from the system.</p>
+            <hr>
+            <p class="mb-0">
+                <a href="/Admin/Customers" class="btn btn-primary">Return to Customers List</a>
+            </p>
+        </div>
+    }
+
+    <div class="d-flex mt-4">
+        <a href="/Admin/Customers" class="btn btn-secondary me-2">
+            <i class="fas fa-arrow-left me-1"></i> Back to List
+        </a>
+        @if (Model.Customer != null)
+        {
+            <a href="/Admin/Customers/Edit?id=@Model.Customer.AccountId" class="btn btn-primary me-2">
+                <i class="fas fa-edit me-1"></i> Edit
+            </a>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function toggleStatus(accountId, currentStatus) {
+            const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+            const confirmMessage = currentStatus === 'active'
+                ? 'Are you sure you want to deactivate this customer account?'
+                : 'Are you sure you want to activate this customer account?';
+
+            if (confirm(confirmMessage)) {
+                window.location.href = `/Admin/Customers/ToggleStatus?id=${accountId}&status=${newStatus}`;
+            }
+        }
+    </script>
+}

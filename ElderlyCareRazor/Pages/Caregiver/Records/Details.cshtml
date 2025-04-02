@@ -1,0 +1,321 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Caregiver.Records.DetailsModel
+@{
+    ViewData["Title"] = "Record Details";
+}
+
+<div class="container-fluid">
+    <h2>Record Details</h2>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-info">@Model.StatusMessage</div>
+    }
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Record Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-4 fw-bold">Record ID:</div>
+                        <div class="col-md-8">@Model.Record.RecordId</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4 fw-bold">Status:</div>
+                        <div class="col-md-8">
+                            <span class="badge rounded-pill @GetStatusBadgeClass(Model.Record.Status)">
+                                @Model.Record.Status
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4 fw-bold">Description:</div>
+                        <div class="col-md-8">@Model.Record.Description</div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-4 fw-bold">Last Updated:</div>
+                        <div class="col-md-8">@Model.Record.LastUpdated?.ToString("MM/dd/yyyy hh:mm tt")</div>
+                    </div>
+                    @if (Model.Record.ClockInTime.HasValue)
+                    {
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Clock In Time:</div>
+                            <div class="col-md-8">@Model.Record.ClockInTime.Value.ToString("MM/dd/yyyy hh:mm tt")</div>
+                        </div>
+                    }
+                    @if (Model.Record.ClockOutTime.HasValue)
+                    {
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Clock Out Time:</div>
+                            <div class="col-md-8">@Model.Record.ClockOutTime.Value.ToString("MM/dd/yyyy hh:mm tt")</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Elder Information</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Elder != null)
+                    {
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Name:</div>
+                            <div class="col-md-8">@Model.Elder.Fullname</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Phone:</div>
+                            <div class="col-md-8">@(Model.Elder.Phone ?? "N/A")</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Address:</div>
+                            <div class="col-md-8">@(Model.Elder.Address ?? "N/A")</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Birthdate:</div>
+                            <div class="col-md-8">@(Model.Elder.Birthdate?.ToString("MM/dd/yyyy") ?? "N/A")</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Hobby:</div>
+                            <div class="col-md-8">@(Model.Elder.Hobby ?? "N/A")</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-4 fw-bold">Medical Notes:</div>
+                            <div class="col-md-8">@(Model.Elder.MedicalNote ?? "N/A")</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">Elder information not available</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>Service Guidelines</h5>
+                    @if (Model.Record.Status == "InProgress" &&
+                    (string.IsNullOrEmpty(Model.Record.ExerciseGuidelines) ||
+                    string.IsNullOrEmpty(Model.Record.DietGuidelines) ||
+                    string.IsNullOrEmpty(Model.Record.OtherGuidelines)))
+                    {
+                        <div class="alert alert-warning mb-0 py-1">
+                            <i class="fas fa-exclamation-triangle"></i> All guidelines must be completed before clocking out
+                        </div>
+                    }
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                                    <span>Exercise Guidelines</span>
+                                    @if (Model.Record.Status == "InProgress" && string.IsNullOrEmpty(Model.Record.ExerciseGuidelines))
+                                    {
+                                        <span class="badge bg-danger">Required</span>
+                                    }
+                                </div>
+                                <div class="card-body">
+                                    @if (!string.IsNullOrEmpty(Model.Record.ExerciseGuidelines))
+                                    {
+                                        <p>@Model.Record.ExerciseGuidelines</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-muted">No exercise guidelines provided</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                                    <span>Diet Guidelines</span>
+                                    @if (Model.Record.Status == "InProgress" && string.IsNullOrEmpty(Model.Record.DietGuidelines))
+                                    {
+                                        <span class="badge bg-danger">Required</span>
+                                    }
+                                </div>
+                                <div class="card-body">
+                                    @if (!string.IsNullOrEmpty(Model.Record.DietGuidelines))
+                                    {
+                                        <p>@Model.Record.DietGuidelines</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-muted">No diet guidelines provided</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                                    <span>Other Guidelines</span>
+                                    @if (Model.Record.Status == "InProgress" && string.IsNullOrEmpty(Model.Record.OtherGuidelines))
+                                    {
+                                        <span class="badge bg-danger">Required</span>
+                                    }
+                                </div>
+                                <div class="card-body">
+                                    @if (!string.IsNullOrEmpty(Model.Record.OtherGuidelines))
+                                    {
+                                        <p>@Model.Record.OtherGuidelines</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-muted">No other guidelines provided</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.LatestMedicalRecord != null)
+    {
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Latest Medical Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-danger text-white">
+                                        Allergies
+                                    </div>
+                                    <div class="card-body">
+                                        @if (!string.IsNullOrEmpty(Model.LatestMedicalRecord.Allergies))
+                                        {
+                                            <p>@Model.LatestMedicalRecord.Allergies</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-muted">No allergies recorded</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-primary text-white">
+                                        Medications
+                                    </div>
+                                    <div class="card-body">
+                                        @if (!string.IsNullOrEmpty(Model.LatestMedicalRecord.Medications))
+                                        {
+                                            <p>@Model.LatestMedicalRecord.Medications</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-muted">No medications recorded</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-secondary text-white">
+                                        Diagnosis
+                                    </div>
+                                    <div class="card-body">
+                                        @if (!string.IsNullOrEmpty(Model.LatestMedicalRecord.Diagnosis))
+                                        {
+                                            <p>@Model.LatestMedicalRecord.Diagnosis</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-muted">No diagnosis recorded</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card h-100">
+                                    <div class="card-header bg-dark text-white">
+                                        Chronic Conditions
+                                    </div>
+                                    <div class="card-body">
+                                        @if (!string.IsNullOrEmpty(Model.LatestMedicalRecord.ChronicConditions))
+                                        {
+                                            <p>@Model.LatestMedicalRecord.ChronicConditions</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-muted">No chronic conditions recorded</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group">
+                <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
+
+                @if (Model.Record.Status == "Accepted")
+                {
+                    <a asp-page="./Update" asp-route-id="@Model.Record.RecordId" asp-route-action="clockin" class="btn btn-success">
+                        <i class="fas fa-clock"></i> Clock In
+                    </a>
+                }
+                else if (Model.Record.Status == "InProgress")
+                {
+                    <a asp-page="./Update" asp-route-id="@Model.Record.RecordId" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Update Guidelines
+                    </a>
+
+                    @if (!string.IsNullOrEmpty(Model.Record.ExerciseGuidelines) &&
+                   !string.IsNullOrEmpty(Model.Record.DietGuidelines) &&
+                   !string.IsNullOrEmpty(Model.Record.OtherGuidelines))
+                    {
+                        <a asp-page="./Update" asp-route-id="@Model.Record.RecordId" asp-route-action="clockout" class="btn btn-warning">
+                            <i class="fas fa-clock"></i> Clock Out
+                        </a>
+                    }
+                    else
+                    {
+                        <button class="btn btn-warning" disabled title="Complete all guidelines before clocking out">
+                            <i class="fas fa-clock"></i> Clock Out (Complete Guidelines First)
+                        </button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Accepted" => "bg-secondary",
+            "InProgress" => "bg-primary",
+            "Finished" => "bg-success",
+            _ => "bg-secondary"
+        };
+    }
+}

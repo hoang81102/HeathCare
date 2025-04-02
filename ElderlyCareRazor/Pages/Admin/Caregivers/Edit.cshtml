@@ -1,0 +1,257 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Admin.Caregivers.EditModel
+@{
+    ViewData["Title"] = "Edit Caregiver";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Edit Caregiver</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/Admin/Caregivers">Caregivers</a></li>
+        <li class="breadcrumb-item active">Edit</li>
+    </ol>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Edit Caregiver Information</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Input.AccountId" />
+                <input type="hidden" asp-for="Input.RoleId" />
+                <input type="hidden" asp-for="Input.Username" />
+                <input type="hidden" asp-for="CaregiverInput.CaregiverId" />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="mb-3">Personal Information</h4>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Fullname" class="form-label"></label>
+                            <input asp-for="Input.Fullname" class="form-control" required />
+                            <span asp-validation-for="Input.Fullname" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Email" class="form-label"></label>
+                            <input asp-for="Input.Email" class="form-control" type="email" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Phone" class="form-label"></label>
+                            <input asp-for="Input.Phone" class="form-control" />
+                            <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Address" class="form-label"></label>
+                            <textarea asp-for="Input.Address" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Input.Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Birthdate" class="form-label"></label>
+                            <input asp-for="Input.Birthdate" class="form-control" type="date" />
+                            <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Hobby" class="form-label"></label>
+                            <textarea asp-for="Input.Hobby" class="form-control" rows="2"></textarea>
+                            <span asp-validation-for="Input.Hobby" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.Username" class="form-label"></label>
+                            <input class="form-control" value="@Model.Input.Username" disabled />
+                            <small class="form-text text-muted">Username cannot be changed.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Input.AccountStatus" class="form-label"></label>
+                            <select asp-for="Input.AccountStatus" asp-items="Model.StatusOptions" class="form-select" required></select>
+                            <span asp-validation-for="Input.AccountStatus" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input asp-for="ChangePassword" class="form-check-input" type="checkbox" id="resetPassword">
+                                <label class="form-check-label" for="resetPassword">Change Password</label>
+                            </div>
+                            <div id="passwordFields" class="mt-2 d-none">
+                                <div class="mb-2">
+                                    <label asp-for="Input.NewPassword" class="form-label"></label>
+                                    <input asp-for="Input.NewPassword" class="form-control" autocomplete="new-password">
+                                    <span asp-validation-for="Input.NewPassword" class="text-danger"></span>
+                                </div>
+                                <div class="mb-2">
+                                    <label asp-for="Input.ConfirmNewPassword" class="form-label"></label>
+                                    <input asp-for="Input.ConfirmNewPassword" class="form-control" autocomplete="new-password">
+                                    <span asp-validation-for="Input.ConfirmNewPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4 class="mb-3">Professional Information</h4>
+
+                        <div class="mb-3">
+                            <label asp-for="CaregiverInput.Specialty" class="form-label"></label>
+                            <input asp-for="CaregiverInput.Specialty" class="form-control" />
+                            <span asp-validation-for="CaregiverInput.Specialty" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CaregiverInput.ExperienceYears" class="form-label"></label>
+                            <input asp-for="CaregiverInput.ExperienceYears" class="form-control" type="number" min="0" required />
+                            <span asp-validation-for="CaregiverInput.ExperienceYears" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CaregiverInput.Certification" class="form-label"></label>
+                            <input asp-for="CaregiverInput.Certification" class="form-control" />
+                            <span asp-validation-for="CaregiverInput.Certification" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CaregiverInput.Availability" class="form-label"></label>
+                            <select asp-for="CaregiverInput.Availability" asp-items="Model.AvailabilityOptions" class="form-select" required></select>
+                            <span asp-validation-for="CaregiverInput.Availability" class="text-danger"></span>
+                        </div>
+
+                        <h4 class="mt-4 mb-3">Availability Schedule</h4>
+                        @if (Model.Availabilities != null && Model.Availabilities.Any())
+                        {
+                            <div class="table-responsive mb-3">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Day</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var availability in Model.Availabilities)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @switch (availability.DayOfWeek)
+                                                    {
+                                                        case 1:
+                                                            <text>Monday</text>
+                                                            ; break;
+                                                        case 2:
+                                                            <text>Tuesday</text>
+                                                            ; break;
+                                                        case 3:
+                                                            <text>Wednesday</text>
+                                                            ; break;
+                                                        case 4:
+                                                            <text>Thursday</text>
+                                                            ; break;
+                                                        case 5:
+                                                            <text>Friday</text>
+                                                            ; break;
+                                                        case 6:
+                                                            <text>Saturday</text>
+                                                            ; break;
+                                                        case 7:
+                                                            <text>Sunday</text>
+                                                            ; break;
+                                                    }
+                                                </td>
+                                                <td>@availability.StartTime.ToString(@"hh\:mm tt")</td>
+                                                <td>@availability.EndTime.ToString(@"hh\:mm tt")</td>
+                                                <td>
+                                                    <span class="badge @(availability.IsAvailable == true ? "bg-success" : "bg-danger")">
+                                                        @(availability.IsAvailable == true ? "Available" : "Unavailable")
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href="/Admin/Caregivers/EditAvailability?id=@availability.AvailabilityId" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a href="/Admin/Caregivers/AddAvailability?caregiverId=@Model.CaregiverInput.CaregiverId" class="btn btn-success btn-sm">
+                                <i class="fas fa-plus-circle me-1"></i> Add New Availability
+                            </a>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info mb-3">
+                                No availability schedule has been set for this caregiver.
+                            </div>
+                            <a href="/Admin/Caregivers/AddAvailability?caregiverId=@Model.CaregiverInput.CaregiverId" class="btn btn-primary">
+                                <i class="fas fa-plus-circle me-1"></i> Add Availability Schedule
+                            </a>
+                        }
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="fas fa-save me-1"></i> Save Changes
+                    </button>
+                    <a href="/Admin/Caregivers/Details?id=@Model.CaregiverInput.CaregiverId" class="btn btn-secondary me-2">
+                        <i class="fas fa-times me-1"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Show/hide password fields when change password is checked
+            $('#resetPassword').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#passwordFields').removeClass('d-none');
+                } else {
+                    $('#passwordFields').addClass('d-none');
+                    $('#Input_NewPassword, #Input_ConfirmNewPassword').val('');
+                }
+            });
+
+            // Initialize the password fields visibility
+            if ($('#resetPassword').is(':checked')) {
+                $('#passwordFields').removeClass('d-none');
+            }
+        });
+    </script>
+}

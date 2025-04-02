@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{1259555A-6E40-4E5F-A509-DA1839588A37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessObjects", "DataAccessObjects\DataAccessObjects.csproj", "{F15A764D-0A43-4935-AC08-E2F0435DFA03}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repositories", "Repositories\Repositories.csproj", "{E3A704E0-F0E8-427A-8412-40A9D24AADB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{50B6D016-234D-4E14-8651-F2BE3554CFEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElderlyCareMVC", "ElderlyCareMVC\ElderlyCareMVC.csproj", "{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElderlyCareRazor", "ElderlyCareRazor\ElderlyCareRazor.csproj", "{79B64397-8027-40F0-A627-5FC0DA3D3856}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1259555A-6E40-4E5F-A509-DA1839588A37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1259555A-6E40-4E5F-A509-DA1839588A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1259555A-6E40-4E5F-A509-DA1839588A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1259555A-6E40-4E5F-A509-DA1839588A37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15A764D-0A43-4935-AC08-E2F0435DFA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15A764D-0A43-4935-AC08-E2F0435DFA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15A764D-0A43-4935-AC08-E2F0435DFA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15A764D-0A43-4935-AC08-E2F0435DFA03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3A704E0-F0E8-427A-8412-40A9D24AADB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A704E0-F0E8-427A-8412-40A9D24AADB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A704E0-F0E8-427A-8412-40A9D24AADB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A704E0-F0E8-427A-8412-40A9D24AADB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B6D016-234D-4E14-8651-F2BE3554CFEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B6D016-234D-4E14-8651-F2BE3554CFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B6D016-234D-4E14-8651-F2BE3554CFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B6D016-234D-4E14-8651-F2BE3554CFEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5655D4B2-F0F4-4B3F-907D-8AE35032EFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79B64397-8027-40F0-A627-5FC0DA3D3856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79B64397-8027-40F0-A627-5FC0DA3D3856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79B64397-8027-40F0-A627-5FC0DA3D3856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79B64397-8027-40F0-A627-5FC0DA3D3856}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8A3CB0C2-10BB-42C8-A88B-939841C17686}
+	EndGlobalSection
+EndGlobal

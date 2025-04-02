@@ -1,0 +1,311 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ElderlyCareRazor
+build_property.RootNamespace = ElderlyCareRazor
+build_property.ProjectDir = C:\FPT\PRN222\New folder\HeathCare\ElderlyCareRazor\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\FPT\PRN222\New folder\HeathCare\ElderlyCareRazor
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Accounts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Accounts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Accounts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Accounts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWNjb3VudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Caregivers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2FyZWdpdmVyc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Caregivers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2FyZWdpdmVyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Caregivers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2FyZWdpdmVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Customers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Customers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Customers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3VzdG9tZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/ServiceCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VydmljZUNhdGVnb3JpZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Services/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VydmljZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Services/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VydmljZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Services/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VydmljZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Services/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2VydmljZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Users/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Users/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Admin/Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXNlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Auth/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Auth/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Auth/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Auth/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Conflicts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxDb25mbGljdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Availability/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEF2YWlsYWJpbGl0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Bookings/Accept.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEJvb2tpbmdzXEFjY2VwdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Bookings/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEJvb2tpbmdzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Bookings/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEJvb2tpbmdzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Bookings/InProgress.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEJvb2tpbmdzXEluUHJvZ3Jlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Bookings/ManageStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEJvb2tpbmdzXE1hbmFnZVN0YXR1cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Bookings/Upcoming.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXEJvb2tpbmdzXFVwY29taW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Profile/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFByb2ZpbGVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Records/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFJlY29yZHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Records/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFJlY29yZHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Records/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFJlY29yZHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Records/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFJlY29yZHNcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Schedule/Availability.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFNjaGVkdWxlXEF2YWlsYWJpbGl0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Schedule/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFNjaGVkdWxlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Tracking/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFRyYWNraW5nXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Caregiver/Tracking/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWdpdmVyXFRyYWNraW5nXEhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Bookings/Cancel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQm9va2luZ3NcQ2FuY2VsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Bookings/CompletedBookingsDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQm9va2luZ3NcQ29tcGxldGVkQm9va2luZ3NEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Bookings/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQm9va2luZ3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Bookings/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQm9va2luZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Bookings/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQm9va2luZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Elders/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRWxkZXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Elders/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRWxkZXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Elders/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRWxkZXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Elders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRWxkZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Feedback/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRmVlZGJhY2tcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Feedback/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcRmVlZGJhY2tcSGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/MedicalRecords/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWVkaWNhbFJlY29yZHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/MedicalRecords/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWVkaWNhbFJlY29yZHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/MedicalRecords/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWVkaWNhbFJlY29yZHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/MedicalRecords/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWVkaWNhbFJlY29yZHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Profile/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcUHJvZmlsZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Customer/Records/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcUmVjb3Jkc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/FPT/PRN222/New folder/HeathCare/ElderlyCareRazor/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-n56pt5kr5e

@@ -1,0 +1,92 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Customer.Bookings.CancelModel
+@{
+    ViewData["Title"] = "Cancel Booking";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">Cancel Booking</h4>
+                </div>
+                <div class="card-body">
+                    @if (Model.Booking != null)
+                    {
+                        <h5 class="mb-4">Are you sure you want to cancel this booking?</h5>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h6>Service Information</h6>
+                                <dl class="row">
+                                    <dt class="col-sm-4">Service:</dt>
+                                    <dd class="col-sm-8">@Model.Service?.ServiceName</dd>
+
+                                    <dt class="col-sm-4">Category:</dt>
+                                    <dd class="col-sm-8">@Model.ServiceCategory?.CategoryName</dd>
+
+                                    <dt class="col-sm-4">Elder:</dt>
+                                    <dd class="col-sm-8">@Model.Elder?.Fullname</dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Appointment Details</h6>
+                                <dl class="row">
+                                    <dt class="col-sm-4">Date:</dt>
+                                    <dd class="col-sm-8">
+                                        @(Model.BookingTimeSlot != null ? Model.BookingTimeSlot.BookingDate.ToString("dddd, MMMM d, yyyy") : "N/A")
+                                    </dd>
+
+                                    <dt class="col-sm-4">Time:</dt>
+                                    <dd class="col-sm-8">
+                                        @if (Model.BookingTimeSlot != null)
+                                        {
+                                            <span>@Model.BookingTimeSlot.StartTime.ToString(@"hh\:mm tt") - @Model.BookingTimeSlot.EndTime.ToString(@"hh\:mm tt")</span>
+                                        }
+                                        else
+                                        {
+                                            <span>N/A</span>
+                                        }
+                                    </dd>
+
+                                    <dt class="col-sm-4">Caregiver:</dt>
+                                    <dd class="col-sm-8">@Model.Caregiver?.Account?.Fullname</dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <strong>Warning:</strong> This action cannot be undone. Cancelling a booking may affect the caregiver's schedule and availability.
+                        </div>
+
+                        <form method="post">
+                            <input type="hidden" asp-for="BookingId" />
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="/Customer/Bookings/Details?id=@Model.BookingId" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-left"></i> Back to Details
+                                </a>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="bi bi-x-circle"></i> Cancel Booking
+                                </button>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger">
+                            <h5 class="alert-heading">Booking Not Found</h5>
+                            <p>The booking you are trying to cancel does not exist or you don't have permission to cancel it.</p>
+                            <hr>
+                            <div class="text-center">
+                                <a href="/Customer/Bookings/Index" class="btn btn-primary">View All Bookings</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

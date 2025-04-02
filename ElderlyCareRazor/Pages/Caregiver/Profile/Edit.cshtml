@@ -1,0 +1,187 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Caregiver.Profile.EditModel
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Edit Your Profile</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <input type="hidden" asp-for="Input.AccountId" />
+                        <input type="hidden" asp-for="Input.CaregiverId" />
+                        <input type="hidden" asp-for="Input.Username" />
+
+                        @if (!string.IsNullOrEmpty(TempData["SuccessMessage"]?.ToString()))
+                        {
+                            <div class="alert alert-success">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <h5 class="mb-3">Personal Information</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Username" class="form-label"></label>
+                                    <input asp-for="Input.Username" class="form-control" disabled />
+                                    <span class="text-muted small">Username cannot be changed</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Fullname" class="form-label"></label>
+                                    <input asp-for="Input.Fullname" class="form-control" />
+                                    <span asp-validation-for="Input.Fullname" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Email" class="form-label"></label>
+                                    <input asp-for="Input.Email" class="form-control" />
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Phone" class="form-label"></label>
+                                    <input asp-for="Input.Phone" class="form-control" />
+                                    <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Birthdate" class="form-label"></label>
+                                    <input asp-for="Input.Birthdate" class="form-control" />
+                                    <span asp-validation-for="Input.Birthdate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Hobby" class="form-label"></label>
+                                    <input asp-for="Input.Hobby" class="form-control" />
+                                    <span asp-validation-for="Input.Hobby" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Input.Address" class="form-label"></label>
+                            <textarea asp-for="Input.Address" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Input.Address" class="text-danger"></span>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <h5 class="mb-3">Professional Information</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.ExperienceYears" class="form-label"></label>
+                                    <input asp-for="Input.ExperienceYears" class="form-control" type="number" min="0" max="50" />
+                                    <span asp-validation-for="Input.ExperienceYears" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Availability" class="form-label"></label>
+                                    <select asp-for="Input.Availability" class="form-select" asp-items="Model.AvailabilityOptions"></select>
+                                    <span asp-validation-for="Input.Availability" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Specialty" class="form-label"></label>
+                                    <input asp-for="Input.Specialty" class="form-control" />
+                                    <span asp-validation-for="Input.Specialty" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Input.Certification" class="form-label"></label>
+                                    <input asp-for="Input.Certification" class="form-control" />
+                                    <span asp-validation-for="Input.Certification" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" asp-for="ChangePassword" id="changePasswordCheck" />
+                            <label class="form-check-label" for="changePasswordCheck">
+                                Change Password
+                            </label>
+                        </div>
+
+                        <div id="passwordFields" style="display: none;">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Input.NewPassword" class="form-label"></label>
+                                        <input asp-for="Input.NewPassword" class="form-control" />
+                                        <span asp-validation-for="Input.NewPassword" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Input.ConfirmNewPassword" class="form-label"></label>
+                                        <input asp-for="Input.ConfirmNewPassword" class="form-control" />
+                                        <span asp-validation-for="Input.ConfirmNewPassword" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-page="/Caregiver/Dashboard" class="btn btn-secondary">Back to Dashboard</a>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            // Toggle password fields visibility based on checkbox
+            $("#changePasswordCheck").change(function () {
+                if (this.checked) {
+                    $("#passwordFields").slideDown();
+                } else {
+                    $("#passwordFields").slideUp();
+                    // Clear password fields when unchecked
+                    $("#Input_NewPassword").val('');
+                    $("#Input_ConfirmNewPassword").val('');
+                }
+            });
+
+            // Initialize password fields visibility
+            if ($("#changePasswordCheck").is(":checked")) {
+                $("#passwordFields").show();
+            }
+        });
+    </script>
+}

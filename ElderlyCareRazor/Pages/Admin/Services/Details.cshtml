@@ -1,0 +1,45 @@
+﻿@page "{id:int}"
+@model ElderlyCareRazor.Pages.Admin.Services.DetailsModel
+@{
+    ViewData["Title"] = "Service Details";
+}
+
+<div class="container">
+    <h1>Service Details</h1>
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">@Model.Service.ServiceName</h5>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Service ID:</div>
+                <div class="col-md-9">@Model.Service.ServiceId</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Service Name:</div>
+                <div class="col-md-9">@Model.Service.ServiceName</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Description:</div>
+                <div class="col-md-9">@Model.Service.Description</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Price:</div>
+                <div class="col-md-9">@Model.Service.Price.ToString("C")</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 fw-bold">Category:</div>
+                <div class="col-md-9">@Model.CategoryName</div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-page="./Edit" asp-route-id="@Model.Service.ServiceId" class="btn btn-warning">
+                <i class="bi bi-pencil"></i> Edit
+            </a>
+            <a asp-page="./Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+</div>

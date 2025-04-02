@@ -1,0 +1,264 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Caregiver.DashboardModel
+@{
+    ViewData["Title"] = "Caregiver Dashboard";
+}
+
+<div class="container">
+    <h1 class="mb-4">Welcome, @Model.CurrentCaregiver.Account.Fullname</h1>
+
+    <div class="row">
+        <!-- Overview Stats -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Overview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>Pending Bookings</div>
+                        <span class="badge bg-warning rounded-pill">@Model.PendingBookings.Count</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>Active Sessions</div>
+                        <span class="badge bg-success rounded-pill">@Model.ActiveRecords.Count</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>Upcoming Bookings</div>
+                        <span class="badge bg-info rounded-pill">@Model.UpcomingBookings.Count</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>Total Completed</div>
+                        <span class="badge bg-secondary rounded-pill">@Model.TotalCompletedServices</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="/Caregiver/Profile/Edit" class="list-group-item list-group-item-action">
+                            <i class="bi bi-person-circle me-2"></i> Edit Profile
+                        </a>
+                        <a href="/Caregiver/Availability/Index" class="list-group-item list-group-item-action">
+                            <i class="bi bi-calendar-check me-2"></i> Manage Availability
+                        </a>
+                        <a href="/Caregiver/Bookings/Index" class="list-group-item list-group-item-action">
+                            <i class="bi bi-bookmark me-2"></i> View All Bookings
+                        </a>
+                        <a href="/Caregiver/Records/Index" class="list-group-item list-group-item-action">
+                            <i class="bi bi-journal-text me-2"></i> View All Records
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ratings Summary -->
+            @if (Model.AverageRating > 0)
+            {
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Your Ratings</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <h2>@Model.AverageRating.ToString("F1")</h2>
+                            <div class="ratings">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= Math.Round(Model.AverageRating))
+                                    {
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-star text-warning"></i>
+                                    }
+                                }
+                            </div>
+                            <small class="text-muted">Based on customer feedback</small>
+                        </div>
+
+                        @if (Model.DetailedRatings != null && Model.DetailedRatings.Count > 0)
+                        {
+                            <h6>Detailed Ratings</h6>
+                            @foreach (var rating in Model.DetailedRatings)
+                            {
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <small>@rating.Key</small>
+                                    <small>@rating.Value.ToString("F1")</small>
+                                </div>
+                                <div class="progress mb-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: @(rating.Value * 20)%;"
+                                         aria-valuenow="@rating.Value" aria-valuemin="0" aria-valuemax="5"></div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Upcoming Bookings -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Pending Bookings</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.PendingBookings.Count == 0)
+                    {
+                        <p class="text-center">No pending bookings require your attention.</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Elder</th>
+                                        <th>Service</th>
+@*                                         <th>Actions</th>
+ *@                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model.PendingBookings)
+                                    {
+                                        <tr>
+                                            <td>@booking.BookingDateTime.ToString("MMM dd, yyyy - HH:mm")</td>
+                                            <td>@booking.Elder?.Fullname</td>
+                                            <td>@booking.Service?.ServiceName</td>
+@*                                             <td>
+                                                <a href="/Caregiver/Bookings/Details?id=@booking.BookingId" class="btn btn-sm btn-primary">
+                                                    View
+                                                </a>
+                                                <a href="/Caregiver/Bookings/ManageStatus?id=@booking.BookingId" class="btn btn-sm btn-success">
+                                                    Accept/Reject
+                                                </a>
+                                            </td> *@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Active Sessions -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Active Sessions</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.ActiveRecords.Count == 0)
+                    {
+                        <p class="text-center">No active sessions at the moment.</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Elder</th>
+                                        <th>Started At</th>
+                                        <th>Duration</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var record in Model.ActiveRecords)
+                                    {
+                                        var duration = DateTime.Now - record.ClockInTime;
+                                        <tr>
+                                            <td>@record.Elder?.Fullname</td>
+                                            <td>@record.ClockInTime?.ToString("HH:mm")</td>
+                                            <td>@(duration.HasValue ? $"{Math.Floor(duration.Value.TotalHours)}h {duration.Value.Minutes}m" : "N/A")</td>
+                                            <td>
+                                                <a href="/Caregiver/Records/Update?id=@record.RecordId" class="btn btn-sm btn-warning">
+                                                    Update
+                                                </a>
+                                                <a href="/Caregiver/Records/Details?id=@record.RecordId" class="btn btn-sm btn-info">
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Upcoming Bookings -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Upcoming Bookings</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.UpcomingBookings.Count == 0)
+                    {
+                        <p class="text-center">No upcoming bookings scheduled.</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Elder</th>
+                                        <th>Service</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var booking in Model.UpcomingBookings.Take(5))
+                                    {
+                                        <tr>
+                                            <td>@booking.BookingDateTime.ToString("MMM dd, yyyy - HH:mm")</td>
+                                            <td>@booking.Elder?.Fullname</td>
+                                            <td>@booking.Service?.ServiceName</td>
+                                            <td>
+                                                <a href="/Caregiver/Bookings/Details?id=@booking.BookingId" class="btn btn-sm btn-primary">
+                                                    View
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @if (Model.UpcomingBookings.Count > 5)
+                            {
+                                <div class="text-center mt-3">
+                                    <a href="/Caregiver/Bookings/Index" class="btn btn-outline-primary btn-sm">
+                                        View All Bookings
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add any dashboard-specific JavaScript here
+        $(document).ready(function () {
+            // Example: Refresh the dashboard automatically every 5 minutes
+            setTimeout(function () {
+                location.reload();
+            }, 300000); // 5 minutes
+        });
+    </script>
+}

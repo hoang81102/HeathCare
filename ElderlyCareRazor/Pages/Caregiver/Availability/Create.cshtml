@@ -1,0 +1,118 @@
+﻿@page
+@model ElderlyCareRazor.Pages.Caregiver.Availability.CreateModel
+@{
+    ViewData["Title"] = "Add New Availability";
+}
+
+<h1>Add New Availability</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Availability.CaregiverId" />
+
+                    <div class="mb-3">
+                        <label asp-for="Availability.DayOfWeek" class="form-label">Day of Week</label>
+                        <select asp-for="Availability.DayOfWeek" class="form-select" asp-items="@Model.DaysOfWeekOptions">
+                            <option value="">-- Select Day --</option>
+                        </select>
+                        <span asp-validation-for="Availability.DayOfWeek" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="Availability.StartTime" class="form-label">Start Time</label>
+                            <input asp-for="Availability.StartTime" class="form-control" type="time" />
+                            <span asp-validation-for="Availability.StartTime" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Availability.EndTime" class="form-label">End Time</label>
+                            <input asp-for="Availability.EndTime" class="form-control" type="time" />
+                            <span asp-validation-for="Availability.EndTime" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input asp-for="Availability.IsAvailable" class="form-check-input" checked />
+                        <label asp-for="Availability.IsAvailable" class="form-check-label">Available</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Guidelines</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li>Set your availability for each day of the week.</li>
+                    <li>Start time must be before end time.</li>
+                    <li>You can add multiple time slots for the same day (e.g., morning and evening shifts).</li>
+                    <li>Time slots on the same day should not overlap.</li>
+                    <li>Bookings will only be offered during your available time slots.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5>Current Availability</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    @if (Model.ExistingAvailabilities != null && Model.ExistingAvailabilities.Any())
+                    {
+                        @foreach (var item in Model.ExistingAvailabilities)
+                        {
+                            <li class="list-group-item">
+                                <strong>@Model.GetDayName(item.DayOfWeek):</strong>
+                                @item.StartTime.ToString("h:mm tt") - @item.EndTime.ToString("h:mm tt")
+                                @if (item.IsAvailable != true)
+                                {
+                                    <span class="badge bg-danger float-end">Unavailable</span>
+                                }
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item">No availability schedules found.</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-page="Index" class="btn btn-link">Back to Availability List</a>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            // Validation for time ranges
+            $('form').submit(function (e) {
+                var startTime = $('input[name="Availability.StartTime"]').val();
+                var endTime = $('input[name="Availability.EndTime"]').val();
+
+                if (startTime >= endTime) {
+                    alert('Start time must be before end time.');
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}
