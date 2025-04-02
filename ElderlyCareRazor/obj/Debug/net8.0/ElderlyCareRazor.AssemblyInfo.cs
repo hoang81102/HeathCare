@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElderlyCareRazor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4287d723845489fc90cc650b12bd5aece4191efc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de446b3759922f706cbaf161febd24fee61e44d0")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElderlyCareRazor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElderlyCareRazor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

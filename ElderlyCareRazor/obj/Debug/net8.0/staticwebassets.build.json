@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HL7C/HjVwUj9an2APjIm4RQ/2kAut7pCVOvCGDC5XK4=",
+  "Hash": "EuHQ3R6Y7Xi2W2xU/wHtV1FAC9Ns9p+SQ+rukPh0MM8=",
   "Source": "ElderlyCareRazor",
   "BasePath": "_content/ElderlyCareRazor",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareRazor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ElderlyCareRazor.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareRazor\\wwwroot\\css\\index-styles.css",
+      "SourceId": "ElderlyCareRazor",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareRazor\\wwwroot\\",
+      "BasePath": "_content/ElderlyCareRazor",
+      "RelativePath": "css/index-styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\index-styles.css"
     },
     {
       "Identity": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareRazor\\wwwroot\\css\\site.css",

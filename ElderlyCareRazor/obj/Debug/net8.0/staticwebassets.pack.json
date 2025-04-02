@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ElderlyCareRazor.bundle.scp.css"
     },
     {
+      "Id": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareRazor\\wwwroot\\css\\index-styles.css",
+      "PackagePath": "staticwebassets\\css\\index-styles.css"
+    },
+    {
       "Id": "C:\\FPT\\PRN222\\New folder\\HeathCare\\ElderlyCareRazor\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -1,0 +1,56 @@
+﻿/* Custom styles for the ElderCare landing page */
+
+/* Hero section styling */
+.hero-section {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+    padding: 5rem 0;
+}
+
+/* Feature icon styling */
+.feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+}
+
+/* Service card hover effect */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 3rem 0;
+    }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+        }
+}
+
+/* Create some space for the sticky navbar if needed */
+body {
+    padding-top: 0;
+}
+
+/* Testimonial cards */
+.testimonial-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* CTA section gradient */
+.bg-primary {
+    background: linear-gradient(135deg, #4e73df 0%, #224abe 100%) !important;
+}
